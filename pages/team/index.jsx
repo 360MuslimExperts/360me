@@ -1,24 +1,13 @@
-export const runtime = 'nodejs'; // Node runtime allows fs
-
-import fs from "fs";
-import path from "path";
-
-export async function getStaticProps() {
-  const dataDir = path.join(process.cwd(), "data", "team");
-  const files = fs.readdirSync(dataDir)
-    .filter(f => f.endsWith(".json"))
-    .map(f => f.replace(".json", ""));
-
-  const latestYear = files.sort().reverse()[0];
-
-  return {
-    redirect: {
-      destination: `/team/${latestYear}`,
-      permanent: false,
-    },
-  };
-}
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function TeamIndex() {
-  return null; // Redirect happens automatically
+  const router = useRouter();
+
+  useEffect(() => {
+    // You can hardcode latest year or fetch dynamically if needed
+    router.replace("/team/2025"); // replace with the latest year
+  }, [router]);
+
+  return <p>Redirecting to the latest team...</p>;
 }
