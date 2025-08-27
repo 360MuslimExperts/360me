@@ -1,3 +1,6 @@
+export const runtime = 'nodejs';
+
+
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import fs from "fs";
