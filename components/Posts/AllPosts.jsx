@@ -1,45 +1,48 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import styles from "./Posts.module.css"; // CSS Module import
+import styles from "./Posts.module.css";
 
 export default function AllPosts() {
   const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-
   const perPage = 6;
 
-  const loadPosts = useCallback(() => {
-    if (loading || !hasMore) return; // prevent duplicate calls
+  // Use refs to keep the latest values
+  const pageRef = useRef(1);
+  const loadingRef = useRef(false);
+  const hasMoreRef = useRef(true);
 
-    setLoading(true);
+  const loadPosts = async () => {
+    if (loadingRef.current || !hasMoreRef.current) return;
 
-    fetch(
-      `https://wp.360muslimexperts.com/wp-json/wp/v2/posts?_embed&per_page=${perPage}&page=${page}`
-    )
-      .then((res) => {
-        if (!res.ok) {
-          if (res.status === 400) {
-            // no more posts
-            setHasMore(false);
-            setLoading(false);
-            return [];
-          }
-          throw new Error("Network response was not ok");
+    loadingRef.current = true;
+
+    try {
+      const res = await fetch(
+        `https://wp.360muslimexperts.com/wp-json/wp/v2/posts?_embed&per_page=${perPage}&page=${pageRef.current}`
+      );
+
+      if (!res.ok) {
+        if (res.status === 400) {
+          hasMoreRef.current = false;
         }
-        return res.json();
-      })
-      .then((data) => {
-        setPosts((prev) => [...prev, ...data]);
-        setPage((prev) => prev + 1); // increment page after successful fetch
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, [loading, hasMore, page]);
+        return;
+      }
+
+      const data = await res.json();
+
+      setPosts((prev) => [...prev, ...data]);
+
+      if (data.length < perPage) {
+        hasMoreRef.current = false; // reached last page
+      } else {
+        pageRef.current += 1; // increment page only if more posts exist
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      loadingRef.current = false;
+    }
+  };
 
   useEffect(() => {
     // initial load
@@ -49,8 +52,8 @@ export default function AllPosts() {
       if (
         window.innerHeight + window.scrollY >=
           document.body.offsetHeight - 500 &&
-        !loading &&
-        hasMore
+        !loadingRef.current &&
+        hasMoreRef.current
       ) {
         loadPosts();
       }
@@ -58,12 +61,11 @@ export default function AllPosts() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loadPosts, loading, hasMore]);
+  }, []);
 
   return (
     <section className={styles.posts}>
       <h2 className={styles["posts-title"]}>All Blog Posts</h2>
-
       <div className={styles["posts-container"]}>
         {posts.map((post) => (
           <article key={post.id} className={styles["post-card"]}>
@@ -83,10 +85,10 @@ export default function AllPosts() {
         ))}
       </div>
 
-      {loading && (
+      {loadingRef.current && (
         <p style={{ textAlign: "center", marginTop: "1rem" }}>Loading...</p>
       )}
-      {!hasMore && (
+      {!hasMoreRef.current && (
         <p style={{ textAlign: "center", marginTop: "1rem" }}>No more posts</p>
       )}
     </section>
