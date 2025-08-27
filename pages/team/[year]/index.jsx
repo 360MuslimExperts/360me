@@ -1,6 +1,5 @@
 export const runtime = 'nodejs';
 
-
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
@@ -14,10 +13,12 @@ export default function TeamYear({ year, departments }) {
 
       <div className={styles.grid}>
         {departments.map((dept) => (
-          <Link key={dept} href={`/team/${year}/${dept}`} legacyBehavior>
-            <a className={styles.card} style={{ textDecoration: "none" }}>
-              <h2 className={styles.name}>{dept.charAt(0).toUpperCase() + dept.slice(1)}</h2>
-            </a>
+          <Link key={dept} href={`/team/${year}/${dept}`}>
+            <div className={styles.card}>
+              <h2 className={styles.name}>
+                {dept.charAt(0).toUpperCase() + dept.slice(1)}
+              </h2>
+            </div>
           </Link>
         ))}
       </div>
@@ -25,7 +26,6 @@ export default function TeamYear({ year, departments }) {
   );
 }
 
-// Get departments dynamically from JSON
 export async function getStaticProps({ params }) {
   const { year } = params;
   const jsonPath = path.join(process.cwd(), "data", "team", `${year}.json`);
@@ -36,7 +36,6 @@ export async function getStaticProps({ params }) {
   return { props: { year, departments } };
 }
 
-// Generate all available years dynamically
 export async function getStaticPaths() {
   const dataDir = path.join(process.cwd(), "data", "team");
   const files = fs.readdirSync(dataDir).filter(f => f.endsWith(".json"));

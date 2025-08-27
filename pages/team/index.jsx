@@ -1,12 +1,9 @@
-export const runtime = 'nodejs';
+export const runtime = 'nodejs'; // Node runtime allows fs
 
-
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 import fs from "fs";
 import path from "path";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const dataDir = path.join(process.cwd(), "data", "team");
   const files = fs.readdirSync(dataDir)
     .filter(f => f.endsWith(".json"))
@@ -18,10 +15,10 @@ export async function getServerSideProps() {
     redirect: {
       destination: `/team/${latestYear}`,
       permanent: false,
-    }
+    },
   };
 }
 
 export default function TeamIndex() {
-  return null; // will redirect automatically
+  return null; // Redirect happens automatically
 }
