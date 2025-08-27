@@ -1,9 +1,15 @@
-export const runtime = 'nodejs';
-
+// /team/[year]/[dept].jsx
 import Link from "next/link";
-import fs from "fs";
-import path from "path";
 import styles from "./dept.module.css";
+
+// Import JSONs statically
+import team2024 from "@/data/team/2024.json";
+import team2025 from "@/data/team/2025.json";
+
+const teamData = {
+  2024: team2024,
+  2025: team2025,
+};
 
 export default function TeamDept({ members, deptName, year, departments }) {
   return (
@@ -31,7 +37,7 @@ export default function TeamDept({ members, deptName, year, departments }) {
               <img src={m.image} alt={m.name} className={styles.avatar} />
               <h2 className={styles.name}>{m.name}</h2>
               <p className={styles.role}>{m.role}</p>
-              <p className={styles.regNo}>Reg No: {m.regNo}</p>
+              {m.regNo && <p className={styles.regNo}>Reg No: {m.regNo}</p>}
             </div>
           ))}
         </div>
@@ -42,25 +48,24 @@ export default function TeamDept({ members, deptName, year, departments }) {
 
 export async function getStaticProps({ params }) {
   const { year, dept } = params;
-  const jsonPath = path.join(process.cwd(), "data", "team", `${year}.json`);
-  const allData = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+  const data = teamData[year];
 
-  const members = allData[dept] || [];
+  if (!data || !data[dept]) {
+    return { notFound: true };
+  }
+
+  const members = data[dept];
   const deptName = dept.charAt(0).toUpperCase() + dept.slice(1);
-  const departments = Object.keys(allData);
+  const departments = Object.keys(data);
 
   return { props: { members, deptName, year, departments } };
 }
 
 export async function getStaticPaths() {
-  const dataDir = path.join(process.cwd(), "data", "team");
-  const files = fs.readdirSync(dataDir).filter(f => f.endsWith(".json"));
-
   const paths = [];
-  files.forEach((file) => {
-    const year = file.replace(".json", "");
-    const data = JSON.parse(fs.readFileSync(path.join(dataDir, file), "utf-8"));
-    Object.keys(data).forEach(dept => {
+
+  Object.entries(teamData).forEach(([year, data]) => {
+    Object.keys(data).forEach((dept) => {
       paths.push({ params: { year, dept } });
     });
   });

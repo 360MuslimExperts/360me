@@ -1,26 +1,49 @@
 // pages/[slug].js
-export const runtime = process.env.NEXT_RUNTIME_EDGE ? 'edge' : 'experimental-edge';
+export const runtime = 'edge'; // required for Cloudflare Pages
 
-import SinglePost from "@/components/Posts/SinglePost";
+import { useEffect, useState } from "react";
 import Head from "next/head";
+import SinglePost from "@/components/Posts/SinglePost";
 
-export default function SinglePostPage({ post }) {
-  if (!post) {
-    return <p>Post not found.</p>;
-  }
+export default function SinglePostPage({ slug }) {
+  const [post, setPost] = useState(null);
 
-  const description = post?.excerpt?.rendered?.replace(/<[^>]+>/g, '') || '';
-  const featuredImage = post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null;
+  useEffect(() => {
+    async function fetchPost() {
+      try {
+        const res = await fetch(
+          `https://wp.360muslimexperts.com/wp-json/wp/v2/posts?slug=${slug}&_embed`
+        );
+        const data = await res.json();
+        setPost(data[0] || null);
+      } catch (err) {
+        console.error("Error fetching post:", err);
+      }
+    }
+
+    fetchPost();
+  }, [slug]);
+
+  if (!post) return <p>Loading post...</p>;
+
+  const description = post?.excerpt?.rendered?.replace(/<[^>]+>/g, "") || "";
+  const featuredImage =
+    post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null;
 
   return (
     <>
       <Head>
-        <title>{post?.title?.rendered || 'Post'}</title>
+        <title>{post?.title?.rendered || "Post"}</title>
         <meta name="description" content={description} />
-        <meta property="og:title" content={post?.title?.rendered || 'Post'} />
+        <meta property="og:title" content={post?.title?.rendered || "Post"} />
         <meta property="og:description" content={description} />
-        {featuredImage && <meta property="og:image" content={featuredImage} />}
-        <meta property="og:url" content={`https://360muslimexperts.com/${post?.slug}`} />
+        {featuredImage && (
+          <meta property="og:image" content={featuredImage} />
+        )}
+        <meta
+          property="og:url"
+          content={`https://360muslimexperts.com/${post?.slug}`}
+        />
       </Head>
 
       <SinglePost post={post} />
@@ -28,26 +51,11 @@ export default function SinglePostPage({ post }) {
   );
 }
 
-// Fetch all post slugs
-export async function getStaticPaths() {
-  const res = await fetch('https://wp.360muslimexperts.com/wp-json/wp/v2/posts');
-  const posts = await res.json();
-
-  const paths = posts.map(post => ({
-    params: { slug: post.slug }
-  }));
-
-  return { paths, fallback: 'blocking' };
-}
-
-// Fetch post by slug
-export async function getStaticProps({ params }) {
-  const res = await fetch(`https://wp.360muslimexperts.com/wp-json/wp/v2/posts?slug=${params.slug}&_embed`);
-  const data = await res.json();
-
-  if (!data || !data.length) {
-    return { notFound: true };
-  }
-
-  return { props: { post: data[0] }, revalidate: 10 };
+// Next.js will pass the slug as a prop via getServerSideProps fallback
+export async function getServerSideProps({ params }) {
+  return {
+    props: {
+      slug: params.slug,
+    },
+  };
 }

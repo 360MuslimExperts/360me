@@ -1,9 +1,15 @@
-export const runtime = 'nodejs';
-
-import fs from "fs";
-import path from "path";
+// /team/[year]/index.jsx
 import Link from "next/link";
-import styles from "./dept.module.css"; // reuse your member CSS
+import styles from "./dept.module.css";
+
+// Import JSONs statically
+import team2024 from "@/data/team/2024.json";
+import team2025 from "@/data/team/2025.json";
+
+const teamData = {
+  2024: team2024,
+  2025: team2025,
+};
 
 export default function TeamYear({ year, departments }) {
   return (
@@ -28,18 +34,19 @@ export default function TeamYear({ year, departments }) {
 
 export async function getStaticProps({ params }) {
   const { year } = params;
-  const jsonPath = path.join(process.cwd(), "data", "team", `${year}.json`);
-  const allData = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+  const data = teamData[year];
 
-  const departments = Object.keys(allData);
+  if (!data) {
+    return { notFound: true };
+  }
+
+  const departments = Object.keys(data);
 
   return { props: { year, departments } };
 }
 
 export async function getStaticPaths() {
-  const dataDir = path.join(process.cwd(), "data", "team");
-  const files = fs.readdirSync(dataDir).filter(f => f.endsWith(".json"));
-  const years = files.map(f => f.replace(".json", ""));
+  const years = Object.keys(teamData);
 
   const paths = years.map((year) => ({ params: { year } }));
 
