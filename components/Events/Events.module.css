@@ -1,0 +1,149 @@
+/* Section wrapper */
+.events-section {
+  margin: 60px auto;
+  width: 95%;
+  max-width: 1200px;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  animation: fadeInUp 1s ease;
+}
+
+/* Header */
+.events-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.events-header h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.events-header h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 6px auto 0;
+  border-radius: 2px;
+}
+
+.events-header p {
+  font-size: 1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Events container */
+.events-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual event cards */
+.event {
+  flex: 1 1 22%; /* 4 per row on large screens */
+  max-width: 280px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.event:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* Event image */
+.event img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px 16px 0 0;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.event img:hover {
+  transform: scale(1.05);
+}
+
+/* Event info */
+.event-info {
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.event-info h3 {
+  margin: 5px 0;
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.event-info p {
+  margin: 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet / medium screens */
+@media (max-width: 992px) {
+  .event {
+    flex: 1 1 45%; /* 2 per row */
+  }
+
+  .events-header h2 {
+    font-size: 2rem;
+  }
+
+  .event-info h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Small screens / mobile */
+@media (max-width: 600px) {
+  .event {
+    flex: 1 1 100%; /* 1 per row */
+  }
+
+  .events-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .events-header p {
+    font-size: 0.95rem;
+  }
+
+  .event-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .event-info p {
+    font-size: 0.9rem;
+  }
+}

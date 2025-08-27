@@ -1,0 +1,85 @@
+/* Section header */
+.donate-header {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 2rem 0 1.5rem 0;
+  color: var(--primary);
+}
+
+/* Content container */
+.donate-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem; /* space between cards */
+  flex-wrap: nowrap; /* keep all three in a row even on mobile */
+  padding: 1rem;
+}
+
+/* Individual donate card */
+.donate-content > div {
+  text-align: center;
+  flex: 1 1 0; /* distribute space equally */
+  max-width: 200px; /* prevent stretching on desktop */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.donate-content > div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Image style */
+.donate-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.donate-content img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+/* Text under image */
+.donate-desc h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Optional paragraph under title */
+.donate-desc p {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.3;
+}
+
+/* Responsiveness for very small screens */
+@media (max-width: 480px) {
+  .donate-content {
+    gap: 0.5rem;
+  }
+
+  .donate-content > div {
+    max-width: 120px; /* shrink cards for small screens */
+  }
+
+  .donate-desc h3 {
+    font-size: 1rem;
+  }
+
+  .donate-desc p {
+    font-size: 0.85rem;
+  }
+}

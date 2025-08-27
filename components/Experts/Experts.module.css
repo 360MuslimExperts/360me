@@ -1,0 +1,149 @@
+/* Section wrapper */
+.experts-section {
+  margin: 80px auto;
+  width: 92%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* Header */
+.experts-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.experts-header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.experts-header h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 6px auto 0;
+  border-radius: 2px;
+}
+
+.experts-header p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 5px auto 0;
+}
+
+/* Container for expert cards */
+.experts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Individual expert card */
+.expert {
+  flex: 1 1 22%; /* 4 per row on desktop */
+  max-width: 250px;
+  text-align: center;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.expert:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* Expert image */
+.expert img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px 16px 0 0;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.expert img:hover {
+  transform: scale(1.05);
+}
+
+/* Expert info */
+.expert-info {
+  padding: 15px 10px;
+}
+
+.expert-info h3 {
+  margin: 5px 0;
+  font-size: 1.2rem;
+}
+
+.expert-info p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Responsive design */
+
+/* Tablets / medium screens */
+@media (max-width: 992px) {
+  .expert {
+    flex: 1 1 45%; /* 2 per row */
+  }
+
+  .experts-header h2 {
+    font-size: 2rem;
+  }
+
+  .expert-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .expert-info p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .experts-container {
+    justify-content: space-between;
+    gap: 10px; /* smaller gap for mobile */
+  }
+
+  .expert {
+    flex: 0 0 48%; /* slightly less than 50% to fit 2 in a row */
+    max-width: 48%;
+    margin-bottom: 15px; /* vertical spacing between rows */
+  }
+
+  .experts-header h2 {
+    font-size: 2rem; /* slightly bigger than before */
+    margin-bottom: 15px;
+  }
+
+  .experts-header p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .expert-info h3 {
+    font-size: 1.1rem; /* slightly bigger */
+    margin: 5px 0;
+  }
+
+  .expert-info p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+
