@@ -1,51 +1,50 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import styles from "./Post.module.css";
 import Comments from "./Comments";
 
-export default function SinglePost() {
-  const router = useRouter();
-  const { slug } = router.query;
-  const [post, setPost] = useState(null);
-
+export default function SinglePost({ post }) {
+  // Get first image from content
   const getFirstImage = (content) => {
     const match = content.match(/<img.*?src="(.*?)"/);
     return match ? match[1] : null;
   };
 
-  useEffect(() => {
-    if (!slug) return; // Wait for slug to be available
+  // Remove first image from content
+  const removeFirstImage = (content) => {
+    return content.replace(/<img.*?src=".*?".*?>/, "");
+  };
 
-    fetch(
-      `https://wp.360muslimexperts.com/wp-json/wp/v2/posts?slug=${slug}&_embed`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.length > 0) setPost(data[0]);
-      })
-      .catch((err) => console.error(err));
-  }, [slug]);
+  const firstImageInContent = getFirstImage(post.content.rendered); // WP image
+  const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url; // post image
 
-  if (!post) return <p>Loading...</p>;
+  // Prioritize WP image first, then featured image
+  const topImage = firstImageInContent || featuredImage || null;
 
-  const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
-  const firstImageInContent = getFirstImage(post.content.rendered);
+  // Clean content to avoid duplicate top image
+  const cleanedContent =
+    topImage === firstImageInContent
+      ? removeFirstImage(post.content.rendered)
+      : post.content.rendered;
 
-  // Only display featured image if content doesn't already have an image
-  const displayFeatured = featuredImage && !firstImageInContent;
+  // Author name
+  const authorName = post._embedded?.author?.[0]?.name || "Unknown";
 
   return (
     <article className={styles["single-post"]}>
-      {displayFeatured && (
+      {topImage && (
         <img
-          src={featuredImage}
+          src={topImage}
           alt={post.title.rendered}
           className={styles["post-image"]}
         />
       )}
 
       <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-      <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+      <p className={styles["post-author"]}>By {authorName}</p>
+
+      <div
+        className={styles["post-content"]}
+        dangerouslySetInnerHTML={{ __html: cleanedContent }}
+      />
 
       <Comments postId={post.id} />
     </article>

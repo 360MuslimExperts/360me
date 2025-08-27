@@ -1,51 +1,70 @@
-/* Comments.module.css */
-
+/* Comments Section */
 .comments {
   margin-top: 3rem;
   border-top: 1px solid #ddd;
   padding-top: 2rem;
 }
 
+/* Header */
 .comments h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
 
-/* Use camelCase names for CSS Modules */
+/* Comment List */
 .commentList {
   list-style: none;
   padding-left: 0;
   margin-bottom: 2rem;
 }
 
+/* Individual Comment */
 .comment {
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
-  margin-left: 0;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  background: #f9f9f9;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
+/* Nested Replies */
+.commentList .commentList {
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Author Name */
 .commentAuthor {
   margin: 0 0 0.3rem;
   font-weight: 600;
+  color: #111;
 }
 
+/* Comment Content */
 .commentContent {
   margin-bottom: 0.5rem;
+  color: #333;
+  line-height: 1.6;
 }
 
+/* Reply Button */
 .replyBtn {
   font-size: 0.85rem;
-  color: #0077ff;
+  color: var(--primary);
   background: none;
   border: none;
   cursor: pointer;
   margin-top: 0.5rem;
+  transition: color 0.25s ease;
 }
 
 .replyBtn:hover {
+  color: var(--accent);
   text-decoration: underline;
 }
 
+/* Comment Form */
 .commentForm {
   display: flex;
   flex-direction: column;
@@ -57,6 +76,7 @@
   margin-bottom: 0.5rem;
 }
 
+/* Inputs & Textarea */
 .commentForm input,
 .commentForm textarea {
   padding: 0.5rem 0.8rem;
@@ -64,6 +84,14 @@
   border-radius: 5px;
   font-family: inherit;
   font-size: 1rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.commentForm input:focus,
+.commentForm textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.15);
 }
 
 .commentForm textarea {
@@ -71,21 +99,24 @@
   min-height: 100px;
 }
 
+/* Submit Button */
 .commentForm button {
-  background: #0077ff;
+  background: var(--primary);
   color: #fff;
   border: none;
   padding: 0.7rem 1.2rem;
   border-radius: 5px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .commentForm button:hover {
-  background: #0056b3;
+  background: var(--accent);
+  transform: translateY(-1px);
 }
 
+/* Replying To Notice */
 .replyingTo {
   font-size: 0.9rem;
   color: #555;
@@ -94,8 +125,36 @@
 .replyingTo button {
   background: none;
   border: none;
-  color: #0077ff;
+  color: var(--primary);
   cursor: pointer;
   text-decoration: underline;
   margin-left: 0.5rem;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+  .commentForm {
+    max-width: 100%;
+  }
+
+  .comment {
+    padding: 0.8rem;
+  }
+
+  .commentAuthor {
+    font-size: 0.95rem;
+  }
+
+  .commentContent {
+    font-size: 0.95rem;
+  }
+
+  .replyBtn {
+    font-size: 0.8rem;
+  }
+
+  .commentForm button {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+  }
 }
