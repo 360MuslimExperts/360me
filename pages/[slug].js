@@ -1,4 +1,6 @@
 // pages/[slug].js
+export const runtime = process.env.NEXT_RUNTIME_EDGE ? 'edge' : 'experimental-edge';
+
 import SinglePost from "@/components/Posts/SinglePost";
 import Head from "next/head";
 
