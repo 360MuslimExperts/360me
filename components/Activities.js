@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const activities = [
   {
@@ -59,13 +60,10 @@ const Activities = () => {
       </div>
 
       {/* Explore Button */}
-      <div className="text-center mt-12">
-        <a
-          href="/activities"
-          className="inline-block px-6 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-xl shadow-md transition-all duration-300 hover:bg-[var(--color-secondary-color)] hover:shadow-lg"
-        >
+      <div className="flex justify-center mt-10">
+        <Link href="/activities" className="btn">
           Explore Activities
-        </a>
+        </Link>
       </div>
     </section>
   );

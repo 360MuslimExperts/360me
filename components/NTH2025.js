@@ -34,7 +34,7 @@ const NTH2025 = () => {
       {/* Button */}
       <Link
         href="/nth-2025"
-        className="mt-6 px-6 py-3 bg-[var(--color-primary)] rounded-xl font-semibold shadow-md transition-all duration-300 hover:bg-[var(--color-secondary-color)] hover:shadow-lg"
+        className="mt-6 px-6 py-3b btn"
       >
         Explore Works
       </Link>

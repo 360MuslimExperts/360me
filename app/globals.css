@@ -49,3 +49,34 @@ body {
 .no-padding {
   padding-top: 0;
 }
+
+@layer components {
+/* Solid Button */
+.btn {
+  @apply inline-flex items-center justify-center
+         px-6 py-3 rounded-2xl font-semibold
+         bg-primary text-white shadow-lg shadow-primary/20
+         transition-all duration-300 ease-in-out
+         hover:bg-primary/90 hover:shadow-xl hover:scale-[1.02]
+         active:scale-[0.98];
+}
+
+/* Outline Button */
+.btn-outline {
+  @apply inline-flex items-center justify-center
+         px-6 py-3 rounded-2xl font-semibold
+         border-2 border-primary text-primary
+         transition-all duration-300 ease-in-out
+         hover:bg-primary hover:text-white hover:shadow-md hover:scale-[1.02]
+         active:scale-[0.98];
+}
+
+/* Ghost Button */
+.btn-ghost {
+  @apply inline-flex items-center justify-center
+         px-6 py-3 rounded-2xl font-semibold
+         text-primary transition-all duration-300 ease-in-out
+         hover:bg-primary/10 hover:shadow-sm hover:scale-[1.02]
+         active:scale-[0.98];
+}
+}
