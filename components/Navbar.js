@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 // ✅ Keep navLinks outside component to avoid re-creation on each render
@@ -30,21 +31,31 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md ${
-        scrolled ? "bg-background/95 shadow-md h-16" : "bg-background/50 h-20"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/35 shadow-md h-14 backdrop-blur-md"
+          : "bg-background/25 h-20 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-full">
-        {/* Logo */}
-        <Link href="/" onClick={() => setMenuOpen(false)}>
-          <img
-            src="/logo-512.png"
-            alt="Logo"
-            className={`transition-all duration-300 ${
-              scrolled ? "h-10" : "h-14"
-            }`}
-          />
-        </Link>
+
+{/* Logo + Site Name */}
+<Link
+  href="/"
+  onClick={() => setMenuOpen(false)}
+  className="flex items-center gap-3"
+>
+  <Image
+    src="/logo-512.png"
+    alt="Logo"
+    width={scrolled ? 50 : 65}
+    height={scrolled ? 50 : 65}
+    className="transition-all duration-300"
+  />
+  <span className="transition-colors duration-300 text-lg md:text-xl font-semibold text-golden">
+    360 Muslim Experts
+  </span>
+</Link>
 
         {/* Hamburger (mobile only) */}
         <button
@@ -71,7 +82,11 @@ export default function Navbar() {
 
         {/* Links */}
         <ul
-          className={`flex flex-col md:flex-row md:static absolute top-0 right-0 md:translate-x-0 transform transition-transform duration-300 md:items-center gap-6 md:gap-10 p-8 md:p-0 bg-background/80 md:bg-transparent backdrop-blur-md md:backdrop-blur-none h-screen md:h-auto ${
+          className={`flex flex-col md:flex-row md:static absolute top-0 right-0 md:translate-x-0 transform transition-transform duration-300 md:items-center gap-6 md:gap-10 p-8 md:p-0 ${
+            scrolled
+              ? "bg-background/95 backdrop-blur-md"
+              : "bg-background/50 backdrop-blur-sm"
+          } md:bg-transparent md:backdrop-blur-none h-screen md:h-auto ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -82,20 +97,19 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 className={`relative font-medium transition-colors duration-200 group ${
                   isActive(link.href)
-                    ? "text-primary font-semibold"
+                    ? "text-primary font-semibold hover:text-primary"
                     : "text-foreground hover:text-accent"
                 }`}
               >
                 {link.label}
                 {/* Underline effect */}
                 <span
-  className={`absolute left-1/2 -bottom-1.5 h-[2px] bg-accent transition-all duration-300 ${
-    isActive(link.href)
-      ? "w-full -translate-x-1/2"
-      : "w-0 -translate-x-1/2"
-  } group-hover:w-full`}
-/>
-
+                  className={`absolute left-1/2 -bottom-1.5 h-[2px] bg-accent transition-all duration-300 ${
+                    isActive(link.href)
+                      ? "w-full -translate-x-1/2"
+                      : "w-0 -translate-x-1/2"
+                  } group-hover:w-full`}
+                />
               </Link>
             </li>
           ))}
