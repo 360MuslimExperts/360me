@@ -28,8 +28,8 @@
     "author": "Afsheen Zulfiqar",
     "designation": "BS Hons in Chemistry",
     "category": "writing",
-    "id": "reasons-behind-the-decline-of-muslims",
-    "file": "./reasons-behind-the-decline-of-muslims.mdx"
+    "id": "reasons-behind-the-decline-of-muslims-by-afsheen-zulfiqar",
+    "file": "./reasons-behind-the-decline-of-muslims-by-afsheen-zulfiqar.mdx"
   },
     {
     "title": "Islamic system vs Democracy",
@@ -44,6 +44,7 @@
     "author": "Ayesha Sarfraz",
     "designation": "Doctor of Physical Therapy",
     "category": "writing",
+    "language": "ur",
     "id": "islamic-system-vs-democracy-by-ayesha-sarfraz",
     "file": "./islamic-system-vs-democracy-by-ayesha-sarfraz.mdx"
   },

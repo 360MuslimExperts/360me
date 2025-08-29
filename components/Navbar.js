@@ -4,6 +4,15 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+// ✅ Keep navLinks outside component to avoid re-creation on each render
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Blogs" },
+  { href: "/contact", label: "Contact Us" },
+  { href: "/about", label: "About Us" },
+  { href: "/faq", label: "FAQ's" },
+];
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -15,23 +24,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/blog", label: "Blogs" },
-    { href: "/contact", label: "Contact Us" },
-    { href: "/about", label: "About Us" },
-    { href: "/faq", label: "FAQ's" },
-  ];
-
+  // ✅ Safer active route check
   const isActive = (href) =>
-    pathname === href || pathname.startsWith(href);
+    pathname === href || (href !== "/" && pathname.startsWith(href + "/"));
 
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md ${
-        scrolled
-          ? "bg-background/95 shadow-md h-16"
-          : "bg-background/50 h-20"
+        scrolled ? "bg-background/95 shadow-md h-16" : "bg-background/50 h-20"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-full">
@@ -47,7 +47,8 @@ export default function Navbar() {
         </Link>
 
         {/* Hamburger (mobile only) */}
-        <div
+        <button
+          aria-label="Toggle menu"
           className="md:hidden flex flex-col justify-between w-7 h-5 cursor-pointer z-50"
           onClick={() => setMenuOpen(!menuOpen)}
         >
@@ -66,7 +67,7 @@ export default function Navbar() {
               menuOpen ? "-rotate-45 -translate-y-2" : ""
             }`}
           ></span>
-        </div>
+        </button>
 
         {/* Links */}
         <ul
@@ -79,18 +80,22 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`relative font-medium transition-colors duration-200 ${
+                className={`relative font-medium transition-colors duration-200 group ${
                   isActive(link.href)
                     ? "text-primary font-semibold"
                     : "text-foreground hover:text-accent"
                 }`}
               >
                 {link.label}
+                {/* Underline effect */}
                 <span
-                  className={`absolute left-1/2 -bottom-1 h-[2px] bg-accent transition-all duration-300 ${
-                    isActive(link.href) ? "w-full -translate-x-1/2" : "w-0"
-                  } group-hover:w-full`}
-                ></span>
+  className={`absolute left-1/2 -bottom-1.5 h-[2px] bg-accent transition-all duration-300 ${
+    isActive(link.href)
+      ? "w-full -translate-x-1/2"
+      : "w-0 -translate-x-1/2"
+  } group-hover:w-full`}
+/>
+
               </Link>
             </li>
           ))}
