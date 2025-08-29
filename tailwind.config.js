@@ -7,9 +7,14 @@ module.exports = {
     './data/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+    fontFamily: {
+      sans: ['Outfit', 'sans-serif'],
+    },
+  },
   },
   plugins: [
     require('@tailwindcss/typography'),
   ],
+  
 };

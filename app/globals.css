@@ -7,6 +7,9 @@
   --background: #fffaf0; /* using your custom background */
   --foreground: #2c2c2c; /* using your text color */
 }
+html, body {
+  font-family: 'Outfit', sans-serif;
+}
 
 /* Tailwind theme tokens */
 @theme inline {
