@@ -41,10 +41,10 @@ export default function Footer() {
                 </h4>
                 <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base">
                   {[
-                    { href: "/privacy-policy", label: "Privacy Policy" },
-                    { href: "/terms-conditions", label: "Terms & Conditions" },
                     { href: "/contact", label: "Contact Us" },
-                    { href: "/team-2024", label: "Team-2024" }
+                    { href: "/team-2025", label: "Team-2025" },
+                    { href: "/privacy-policy", label: "Privacy Policy" },
+                    { href: "/terms-conditions", label: "Terms & Conditions" }
                   ].map((link) => (
                     <li key={link.href}>
                       <Link 
