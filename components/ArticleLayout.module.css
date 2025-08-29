@@ -1,0 +1,128 @@
+/* --- Layout and Container --- */
+.articleContainer {
+display: flex;
+justify-content: center;
+align-items: flex-start;
+padding: 3rem 1.5rem;
+background-color: var(--background);
+min-height: 100vh;
+}
+
+.articleCard {
+width: 100%;
+max-width: 850px;
+background-color: var(--card-bg);
+border-radius: var(--border-radius-lg);
+/* padding: 3rem 2.5rem; */
+box-shadow: var(--shadow-card);
+line-height: 1.7;
+font-family: var(--font-serif);
+color: var(--text-color);
+animation: fadeIn 0.8s ease-out;
+}
+
+/* --- Article Elements --- */
+.articleTitle {
+font-size: 2.8rem;
+font-weight: 700;
+color: var(--color-primary);
+margin-bottom: 0.5rem;
+line-height: 1.2;
+font-family: var(--font-sans);
+}
+
+.articleTitle::after {
+content: '';
+display: block;
+width: 100px;
+height: 4px;
+background: linear-gradient(90deg, var(--color-primary), var(--color-secondary-color));
+margin-top: 0.75rem;
+border-radius: 2px;
+animation: slideIn 0.8s ease-in-out;
+}
+
+.designationText {
+display: block;
+font-size: 0.9rem;
+font-weight: 300;
+color: var(--text-color-light);
+margin-top: 0.25rem;
+}
+
+/* Updated author style for better spacing */
+.articleAuthor {
+font-size: 1rem;
+color: var(--text-color-light);
+margin-bottom: 2.5rem;
+font-style: italic;
+font-family: var(--font-sans);
+font-weight: 400;
+border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+padding-bottom: 1.5rem;
+}
+
+/* --- Content Styling --- */
+.articleContent {
+color: var(--text);
+}
+
+.articleContent p {
+margin-bottom: 1.5rem;
+font-size: 1.1rem;
+}
+
+.articleContent strong {
+color: var(--color-primary);
+font-weight: 700;
+font-family: var(--font-sans);
+}
+
+.articleContent em {
+color: var(--color-secondary);
+font-style: italic;
+font-weight: 500;
+}
+
+.articleContent blockquote {
+border-left: 5px solid var(--color-secondary-color);
+padding: 1rem 1.5rem;
+margin: 2rem 0;
+font-style: italic;
+background: rgba(103, 58, 183, 0.05);
+border-radius: 8px;
+color: var(--text-color-light);
+}
+
+.articleContent h1,
+.articleContent h2,
+.articleContent h3 {
+color: var(--color-primary);
+margin-top: 3rem;
+margin-bottom: 1.5rem;
+font-family: var(--font-sans);
+font-weight: 700;
+}
+
+.articleContent h1 {
+font-size: 2.4rem;
+}
+
+.articleContent h2 {
+font-size: 2rem;
+}
+
+.articleContent h3 {
+font-size: 1.6rem;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+from { width: 0; }
+to { width: 100px; }
+}

@@ -1,26 +1,50 @@
 @import "tailwindcss";
 
+/* Light mode defaults */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffaf0; /* using your custom background */
+  --foreground: #2c2c2c; /* using your text color */
 }
 
+/* Tailwind theme tokens */
 @theme inline {
+  --color-primary: #512c1e;
+  --color-secondary: #8e6d5e;
+  --color-accent: #d4a57a;
+  /* --color-background: #fffaf0; */
+  --color-text: #2c2c2c;
+  --color-text-light: #6c6c6c;
+  --color-golden: #f0a500;
+  --color-white: #ffffff;
+  --color-black: #212121;
+
+  /* Link Tailwind tokens to CSS vars */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* Dark mode overrides */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
+/* Minimal global body styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+/* Default main padding to account for navbar height */
+.with-padding {
+  padding-top: 80px; /* same as navbar height */
+}
+
+.no-padding {
+  padding-top: 0;
 }
