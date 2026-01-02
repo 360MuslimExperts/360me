@@ -18,6 +18,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'ibtisam.is-a.dev',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
     ],
   },
 };

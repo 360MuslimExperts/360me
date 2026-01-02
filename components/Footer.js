@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaInstagram, FaFacebookF, FaYoutube, FaXTwitter } from "react-icons/fa6";
+import { FaInstagram, FaFacebookF, FaYoutube, FaXTwitter, FaEnvelope } from "react-icons/fa6";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -33,7 +33,8 @@ export default function Footer() {
                 { icon: <FaInstagram />, href: "https://instagram.com/360_muslimexperts/", label: "Instagram" },
                 { icon: <FaFacebookF />, href: "https://facebook.com/360MuslimExpertsPak", label: "Facebook" },
                 { icon: <FaYoutube />, href: "https://youtube.com/c/360MuslimExperts", label: "YouTube" },
-                { icon: <FaXTwitter />, href: "https://x.com/360muslimexpert", label: "X (Twitter)" }
+                { icon: <FaXTwitter />, href: "https://x.com/360muslimexpert", label: "X (Twitter)" },
+                { icon: <FaEnvelope />, href: "mailto:360me.info@gmail.com", label: "Email" }
               ].map((social) => (
                 <a
                   key={social.label}
