@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRightLong, FaRegCalendar, FaChevronRight } from "react-icons/fa6";
 
+export const runtime = 'edge';
 export const revalidate = 60;
 
 export default async function BlogPage() {

@@ -4,6 +4,7 @@ import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import { FaArrowLeftLong, FaRegCalendar, FaRegClock, FaShareNodes } from "react-icons/fa6";
 
+export const runtime = 'edge';
 export const revalidate = 60;
 
 const isUrdu = (text) => /[\u0600-\u06FF]/.test(text);
