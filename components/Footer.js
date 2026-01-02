@@ -2,128 +2,113 @@ import Link from "next/link";
 import { FaInstagram, FaFacebookF, FaYoutube, FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-[var(--color-primary)] via-[var(--color-primary-dark,#002)] to-black text-white font-sans px-4 sm:px-6 py-8 md:py-16 mt-16">
-      {/* Background Glow */}
-      <div className="absolute top-0 left-0 w-48 sm:w-60 h-48 sm:h-60 bg-[var(--color-secondary,#facc15)] opacity-15 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-60 sm:w-72 h-60 sm:h-72 bg-[var(--color-golden,#ffd700)] opacity-10 rounded-full blur-3xl"></div>
-      
-      <div className="relative max-w-7xl mx-auto flex flex-col gap-10 md:gap-12">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          
-          {/* Logo & Slogan */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3">
-            <div className="flex items-center gap-2">
-              <img 
-                src="/logo-512.png" 
-                alt="Company Logo" 
-                className="w-14 sm:w-16 md:w-20 drop-shadow-lg" 
-              />
-              <span className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--color-golden)]">
-                360 Muslim Experts
-              </span>
-            </div>
-            <p className="max-w-sm text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed">
-              Empowering communities through <span className="text-[var(--color-golden)]">education</span> and <span className="text-[var(--color-golden)]">humanitarian aid</span>.  
-              Together, we build a brighter tomorrow.
-            </p>
+    <footer className="relative bg-gradient-to-br from-primary via-[#2E140C] to-black text-white font-[Outfit] pt-16 pb-8 overflow-hidden">
+      {/* Decorative Glows */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-secondary/20 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-golden/10 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+
+        {/* Brand Column */}
+        <div className="md:col-span-4 space-y-6">
+          <div className="flex items-center gap-3">
+            <img src="/logo-512.png" alt="360 Muslim Experts Logo" className="w-16 h-16 drop-shadow-lg" />
+            <h2 className="text-2xl font-bold leading-tight">
+              360 Muslim <br /> <span className="text-golden">Experts</span>
+            </h2>
           </div>
-
-          {/* Quick Links + Our Work */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="flex flex-wrap justify-center md:justify-start gap-8 sm:gap-12">
-              
-              {/* Quick Links */}
-              <div>
-                <h4 className="text-[var(--color-golden)] font-semibold uppercase tracking-wide mb-3 text-xs sm:text-sm">
-                  Quick Links
-                </h4>
-                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base">
-                  {[
-                    { href: "/contact", label: "Contact Us" },
-                    { href: "/team-2025", label: "Team-2025" },
-                    { href: "/privacy-policy", label: "Privacy Policy" },
-                    { href: "/terms-conditions", label: "Terms & Conditions" }
-                  ].map((link) => (
-                    <li key={link.href}>
-                      <Link 
-                        href={link.href} 
-                        className="hover:text-[var(--color-golden)] transition"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Our Work */}
-              <div>
-                <h4 className="text-[var(--color-golden)] font-semibold uppercase tracking-wide mb-3 text-xs sm:text-sm">
-                  Our Work
-                </h4>
-                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base">
-                  {[
-                    { href: "/blog", label: "Blog" },
-                    { href: "/media-360", label: "Media 360" },
-                    { href: "/360-education", label: "360 Education" },
-                    { href: "/medico-360", label: "Medico 360" }
-                  ].map((link) => (
-                    <li key={link.href}>
-                      <Link 
-                        href={link.href} 
-                        className="hover:text-[var(--color-golden)] transition"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Newsletter + Social */}
-          <div className="space-y-5 flex flex-col items-center md:items-start">
-            <h4 className="text-[var(--color-golden)] font-semibold uppercase tracking-wide mb-2 text-xs sm:text-sm">
-              Stay Connected
-            </h4>
-            <form className="flex w-full max-w-xs sm:max-w-sm bg-white/10 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-[var(--color-golden)]">
-              <input 
-                type="email" 
-                placeholder="Your email" 
-                className="flex-1 bg-transparent px-3 sm:px-4 py-2 text-xs sm:text-sm outline-none text-white placeholder-gray-400"
-              />
-              <button className="bg-[var(--color-golden)] text-black px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium hover:bg-yellow-400 transition">
-                Subscribe
-              </button>
-            </form>
-            <div className="flex justify-center md:justify-start gap-4 sm:gap-5 text-lg sm:text-xl">
-              <a href="https://instagram.com/360_muslimexperts/" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:text-[var(--color-golden)] transition"><FaInstagram /></a>
-              <a href="https://facebook.com/360MuslimExpertsPak" target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-[var(--color-golden)] transition"><FaFacebookF /></a>
-              <a href="https://youtube.com/c/360MuslimExperts" target="_blank" rel="noreferrer" aria-label="YouTube" className="hover:text-[var(--color-golden)] transition"><FaYoutube /></a>
-              <a href="https://x.com/360muslimexpert" target="_blank" rel="noreferrer" aria-label="Twitter/X" className="hover:text-[var(--color-golden)] transition"><FaXTwitter /></a>
-            </div>
+          <p className="text-white/70 text-sm leading-relaxed max-w-sm">
+            Empowering communities through education, innovation, and humanitarian aid.
+            We connect professionals and scholars to build a brighter, more inclusive future together.
+          </p>
+          <div className="flex gap-4">
+            {[
+              { icon: <FaInstagram />, href: "https://instagram.com/360_muslimexperts/", label: "Instagram" },
+              { icon: <FaFacebookF />, href: "https://facebook.com/360MuslimExpertsPak", label: "Facebook" },
+              { icon: <FaYoutube />, href: "https://youtube.com/c/360MuslimExperts", label: "YouTube" },
+              { icon: <FaXTwitter />, href: "https://x.com/360muslimexpert", label: "X (Twitter)" }
+            ].map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={social.label}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-golden hover:text-black transition-all duration-300"
+              >
+                {social.icon}
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="relative border-t border-white/20 pt-5 text-center">
-          <p className="text-[10px] sm:text-xs text-gray-400">
-            © {new Date().getFullYear()} 360 Muslim Experts. All Rights Reserved.
-          </p>
-            <p className="mt-1 text-[10px] sm:text-xs text-gray-400">
-            Made by{" "}
-            <Link
-              href="https://ibtisam.is-a.dev"
-              target="_blank"
-              className="font-medium text-golden hover:underline"
-            >
-              Ibtisam
-            </Link>
-          </p>
+        {/* Links Column 1 */}
+        <div className="md:col-span-2 md:col-start-6">
+          <h3 className="text-lg font-semibold text-golden mb-6">Quick Links</h3>
+          <ul className="space-y-3">
+            {["Home", "Contact", "Team", "About"].map((item) => (
+              <li key={item}>
+                <Link
+                  href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  className="text-white/80 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block"
+                >
+                  {item}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
+
+        {/* Links Column 2 */}
+        <div className="md:col-span-3">
+          <h3 className="text-lg font-semibold text-golden mb-6">Our Initiatives</h3>
+          <ul className="space-y-3">
+            {[
+              { label: "360 Education", href: "/360-education" },
+              { label: "Medico 360", href: "/medico-360" },
+              { label: "Media 360", href: "/media-360" },
+              { label: "Blog & Insights", href: "/blog" }
+            ].map((item) => (
+              <li key={item.label}>
+                <Link
+                  href={item.href}
+                  className="text-white/80 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Newsletter Column */}
+        <div className="md:col-span-3">
+          <h3 className="text-lg font-semibold text-golden mb-6">Stay Updated</h3>
+          <p className="text-sm text-white/70 mb-4">Subscribe to our newsletter for the latest updates and opportunities.</p>
+          <form className="space-y-3">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-golden focus:ring-1 focus:ring-golden transition-all"
+            />
+            <button className="w-full bg-golden text-black font-semibold rounded-xl px-4 py-3 hover:bg-white transition-colors duration-300">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div className="border-t border-white/10 pt-8 pb-4 text-center">
+        <p className="text-sm text-white/50">
+          © {currentYear} 360 Muslim Experts. All Rights Reserved.
+        </p>
+        <p className="text-xs text-white/40 mt-2">
+          Designed & Developed by <Link href="https://ibtisam.is-a.dev" target="_blank" className="text-golden hover:underline">Ibtisam</Link>
+        </p>
       </div>
     </footer>
   );

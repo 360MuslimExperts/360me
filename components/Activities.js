@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const activities = [
   {
@@ -24,45 +27,61 @@ const activities = [
 
 const Activities = () => {
   return (
-    <section className="w-[95%] max-w-6xl mx-auto my-16 px-6 py-12 bg-white rounded-2xl shadow-xl animate-fadeInUp">
+    <section className="w-full max-w-7xl mx-auto px-4 py-20">
       {/* Header */}
-      <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-primary)] relative inline-block">
-          Activities
-          <span className="block w-16 h-1 bg-[var(--color-accent)] mx-auto mt-2 rounded"></span>
-        </h2>
-        <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
-          Explore our impactful activities that bring knowledge, skills, and
-          values to life.
-        </p>
+      <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="text-golden font-semibold tracking-wider text-sm uppercase">Our Programs</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mt-2">
+            Recent Activities
+          </h2>
+          <p className="text-text-light mt-4 max-w-2xl mx-auto text-lg">
+            Explore our impactful activities that bring knowledge, skills, and
+            values to life.
+          </p>
+        </motion.div>
       </div>
 
       {/* Activities Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-        {activities.map((activity) => (
-          <div
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        {activities.map((activity, index) => (
+          <motion.div
             key={activity.id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl w-full max-w-xs cursor-pointer"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ y: -10 }}
+            className="group w-full max-w-[350px] bg-white rounded-3xl overflow-hidden shadow-lg border border-black/5 hover:shadow-2xl transition-all duration-300"
           >
-            <img
-              src={activity.img}
-              alt={activity.title}
-              className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
-            />
-            <div className="p-5 text-center">
-              <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-1">
+            <div className="relative overflow-hidden bg-gray-50 aspect-square flex items-center justify-center">
+              <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-300 z-10" />
+              <img
+                src={activity.img}
+                alt={activity.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+            <div className="p-8 text-center bg-white relative z-20">
+              <h3 className="text-2xl font-bold text-primary mb-2 group-hover:text-golden transition-colors duration-300">
                 {activity.title}
               </h3>
-              <p className="text-gray-600 text-sm">{activity.speaker}</p>
+              <p className="text-text-light font-medium">{activity.speaker}</p>
+              <div className="mt-4 w-12 h-1 bg-primary/10 mx-auto rounded-full group-hover:bg-golden transition-colors duration-300" />
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {/* Explore Button */}
-      <div className="flex justify-center mt-10">
-        <Link href="/activities" className="btn">
-          Explore Activities
+      <div className="flex justify-center mt-12">
+        <Link href="/activities" className="btn-outline px-8 py-3 rounded-full hover:bg-primary hover:text-white transition-all">
+          Explore All Activities
         </Link>
       </div>
     </section>

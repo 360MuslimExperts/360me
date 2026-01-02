@@ -4,24 +4,33 @@
 
 /* Light mode defaults */
 :root {
-  --background: #fffaf0; /* using your custom background */
-  --foreground: #2c2c2c; /* using your text color */
+  --background: #fffaf0;
+  /* using your custom background */
+  --foreground: #2c2c2c;
+  /* using your text color */
 }
-html, body {
+
+html,
+body {
   font-family: 'Outfit', sans-serif;
 }
 
 /* Tailwind theme tokens */
 @theme inline {
-  --color-primary: #512c1e;
-  --color-secondary: #8e6d5e;
-  --color-accent: #d4a57a;
+  --color-primary: #4A1D12;
+  /* Richer deep brown */
+  --color-secondary: #8C5E4D;
+  /* Warm earthy tone */
+  --color-accent: #E6B686;
+  /* Soft vibrant beige */
   /* --color-background: #fffaf0; */
-  --color-text: #2c2c2c;
-  --color-text-light: #6c6c6c;
-  --color-golden: #f0a500;
+  --color-text: #1F1F1F;
+  /* Sharper dark text */
+  --color-text-light: #5C5C5C;
+  --color-golden: #FFB300;
+  /* Brighter, more energetic gold */
   --color-white: #ffffff;
-  --color-black: #212121;
+  --color-black: #0F0F0F;
 
   /* Link Tailwind tokens to CSS vars */
   --color-background: var(--background);
@@ -45,9 +54,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
 }
+
 /* Default main padding to account for navbar height */
 .with-padding {
-  padding-top: 80px; /* same as navbar height */
+  padding-top: 80px;
+  /* same as navbar height */
 }
 
 .no-padding {
@@ -55,32 +66,41 @@ body {
 }
 
 @layer components {
-/* Solid Button */
-.btn {
-  @apply inline-flex items-center justify-center
-         px-6 py-3 rounded-2xl font-semibold
-         bg-primary text-white shadow-lg shadow-primary/20
-         transition-all duration-300 ease-in-out
-         hover:bg-primary/90 hover:shadow-xl hover:scale-[1.02]
-         active:scale-[0.98];
-}
 
-/* Outline Button */
-.btn-outline {
-  @apply inline-flex items-center justify-center
-         px-6 py-3 rounded-2xl font-semibold
-         border-2 border-primary text-primary
-         transition-all duration-300 ease-in-out
-         hover:bg-primary hover:text-white hover:shadow-md hover:scale-[1.02]
-         active:scale-[0.98];
-}
+  /* Glassmorphism Utilities */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-lg;
+  }
 
-/* Ghost Button */
-.btn-ghost {
-  @apply inline-flex items-center justify-center
-         px-6 py-3 rounded-2xl font-semibold
-         text-primary transition-all duration-300 ease-in-out
-         hover:bg-primary/10 hover:shadow-sm hover:scale-[1.02]
-         active:scale-[0.98];
-}
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-md border border-white/10 shadow-lg;
+  }
+
+  /* Solid Button */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold bg-primary text-white shadow-lg shadow-primary/20 transition-all duration-300 ease-in-out hover:bg-primary/90 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  /* Outline Button */
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary hover:text-white hover:shadow-md hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  /* Ghost Button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold text-primary transition-all duration-300 ease-in-out hover:bg-primary/10 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
 }

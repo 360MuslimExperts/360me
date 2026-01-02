@@ -10,7 +10,7 @@ export default function ClientLayout({ children }) {
   const mainClass = pathname === '/' ? 'no-padding' : 'with-padding';
 
   return (
-    <body>
+    <body suppressHydrationWarning>
       <Navbar />
       <main className={mainClass}>{children}</main>
       <Footer />

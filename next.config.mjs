@@ -12,6 +12,14 @@ const nextConfig = {
   reactStrictMode: true,
   // Add 'md' and 'mdx' to the list of page extensions.
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ibtisam.is-a.dev',
+      },
+    ],
+  },
 };
 
 // Next.js plugins, like withMDX, must be imported dynamically in ES module files.
