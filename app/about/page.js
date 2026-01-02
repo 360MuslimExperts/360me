@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { FaBookQuran, FaGraduationCap, FaPalette } from "react-icons/fa6";
 
 const AboutPage = () => {
@@ -59,9 +60,9 @@ const AboutPage = () => {
                         viewport={{ once: true }}
                         className="bg-primary/5 p-8 md:p-12 rounded-3xl border border-primary/10"
                     >
-                        <h3 className="text-golden font-serif text-2xl md:text-3xl mb-6">"سَنُرِيهِمْ ءَايَـٰتِنَا فِى ٱلْـَٔافَاقِ وَفِىٓ أَنفُسِهِمْ"</h3>
+                        <h3 className="text-golden font-serif text-2xl md:text-3xl mb-6">&quot;سَنُرِيهِمْ ءَايَـٰتِنَا فِى ٱلْـَٔافَاقِ وَفِىٓ أَنفُسِهِمْ&quot;</h3>
                         <p className="text-lg md:text-xl text-primary font-medium italic mb-4">
-                            "We will show them Our signs in the universe and within themselves until it becomes clear to them that this ˹Quran˺ is the truth."
+                            &quot;We will show them Our signs in the universe and within themselves until it becomes clear to them that this ˹Quran˺ is the truth.&quot;
                         </p>
                         <p className="text-sm text-text-light uppercase tracking-widest font-bold">Surah Fussilat (41:53)</p>
                     </motion.div>
@@ -98,7 +99,7 @@ const AboutPage = () => {
                         {/* Abstract image representation since we might not have a photo */}
                         <div className="aspect-square bg-gradient-to-br from-primary via-secondary to-golden rounded-3xl opacity-10 rotate-3 absolute inset-0" />
                         <div className="aspect-square bg-white rounded-3xl shadow-xl border border-gray-100 relative z-10 flex items-center justify-center p-8">
-                            <img src="/logo-512.png" alt="360ME Foundation" className="w-2/3 h-2/3 object-contain opacity-90" />
+                            <Image src="/logo-512.png" alt="360ME Foundation" width={300} height={300} className="w-2/3 h-2/3 object-contain opacity-90" />
                         </div>
                     </motion.div>
                 </div>
@@ -126,7 +127,7 @@ const AboutPage = () => {
                                 <span className="w-2 h-8 bg-golden rounded-full" /> Our Vision
                             </h3>
                             <p className="text-text-light leading-relaxed">
-                                To establish functional institutions that enable the intentional practice of Islam while aligning with contemporary life. We aim to highlight Islam's transformative potential as the ultimate solution to humanity's challenges, serving as an exemplary framework for the world.
+                                To establish functional institutions that enable the intentional practice of Islam while aligning with contemporary life. We aim to highlight Islam&apos;s transformative potential as the ultimate solution to humanity&apos;s challenges, serving as an exemplary framework for the world.
                             </p>
                         </motion.div>
 
@@ -142,7 +143,7 @@ const AboutPage = () => {
                                 <span className="w-2 h-8 bg-secondary rounded-full" /> A Deeper Dive
                             </h3>
                             <p className="text-text-light leading-relaxed">
-                                Primarily based in Pakistan but welcoming globally. The name <strong>"360"</strong> signifies inclusivity—inviting everyone from baby boomers to Gen Z, and individuals from all backgrounds, to understand the true essence of Muslim life.
+                                Primarily based in Pakistan but welcoming globally. The name <strong>&quot;360&quot;</strong> signifies inclusivity—inviting everyone from baby boomers to Gen Z, and individuals from all backgrounds, to understand the true essence of Muslim life.
                             </p>
                         </motion.div>
                     </div>

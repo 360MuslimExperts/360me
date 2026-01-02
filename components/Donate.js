@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const donateItems = [
@@ -33,7 +34,7 @@ const Donate = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl md:text-2xl text-text-light max-w-3xl mx-auto italic font-medium"
           >
-            "The believer's shade on the Day of Resurrection will be his charity."
+            &quot;The believer&apos;s shade on the Day of Resurrection will be his charity.&quot;
           </motion.p>
           <p className="text-sm text-golden mt-2 uppercase tracking-widest font-semibold">- Al-Tirmidhi, Hadith 604</p>
         </div>
@@ -55,9 +56,11 @@ const Donate = () => {
                 {/* Glow effect on hover */}
                 <div className="absolute inset-0 bg-golden/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-75" />
 
-                <img
+                <Image
                   src={item.img}
                   alt={item.title}
+                  width={176}
+                  height={176}
                   className="w-full h-full object-contain drop-shadow-xl z-10 transition-all duration-500 group-hover:rotate-2"
                 />
               </div>
