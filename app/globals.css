@@ -1,106 +1,83 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400..700&display=swap");
+
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 /* Light mode defaults */
 :root {
-  --background: #fffaf0;
-  /* using your custom background */
+  --background: #fffaf5;
+  /* Slightly warmer background */
   --foreground: #2c2c2c;
-  /* using your text color */
 }
 
 html,
 body {
   font-family: 'Outfit', sans-serif;
+  scroll-behavior: smooth;
+}
+
+.urdu {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  line-height: 2.2;
 }
 
 /* Tailwind theme tokens */
 @theme inline {
   --color-primary: #4A1D12;
-  /* Richer deep brown */
   --color-secondary: #8C5E4D;
-  /* Warm earthy tone */
   --color-accent: #E6B686;
-  /* Soft vibrant beige */
-  /* --color-background: #fffaf0; */
   --color-text: #1F1F1F;
-  /* Sharper dark text */
   --color-text-light: #5C5C5C;
-  --color-golden: #FFB300;
-  /* Brighter, more energetic gold */
+  --color-golden: #D48D00;
+  /* Darkened gold for better contrast */
   --color-white: #ffffff;
   --color-black: #0F0F0F;
 
-  /* Link Tailwind tokens to CSS vars */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-/* Dark mode overrides */
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
-/* Minimal global body styles */
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
-}
-
-/* Default main padding to account for navbar height */
-.with-padding {
-  padding-top: 80px;
-  /* same as navbar height */
-}
-
-.no-padding {
-  padding-top: 0;
 }
 
 @layer components {
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  /* Reveal animation */
+  .reveal {
+    animation: reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Hover Card Effect */
+  .hover-card {
+    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_40px_80px_-20px_rgba(74,29,18,0.15)];
+  }
 
   /* Glassmorphism Utilities */
   .glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-lg;
+    @apply bg-white/40 backdrop-blur-xl border border-white/40 shadow-xl;
   }
 
-  .glass-dark {
-    @apply bg-black/30 backdrop-blur-md border border-white/10 shadow-lg;
-  }
-
-  /* Solid Button */
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold bg-primary text-white shadow-lg shadow-primary/20 transition-all duration-300 ease-in-out hover:bg-primary/90 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98];
+    @apply inline-flex items-center justify-center px-10 py-5 rounded-2xl font-black uppercase tracking-widest bg-primary text-white shadow-xl shadow-primary/20 transition-all duration-300 hover:bg-primary/90 hover:scale-105 active:scale-95;
   }
 
-  /* Outline Button */
   .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold border-2 border-primary text-primary transition-all duration-300 ease-in-out hover:bg-primary hover:text-white hover:shadow-md hover:scale-[1.02] active:scale-[0.98];
-  }
-
-  /* Ghost Button */
-  .btn-ghost {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold text-primary transition-all duration-300 ease-in-out hover:bg-primary/10 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98];
-  }
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+    @apply inline-flex items-center justify-center px-10 py-5 rounded-2xl font-black uppercase tracking-widest border-2 border-primary text-primary transition-all duration-300 hover:bg-primary hover:text-white hover:scale-105 active:scale-95;
   }
 }

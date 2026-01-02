@@ -31,6 +31,8 @@ const Posts = () => {
         <div className="py-24 text-center text-primary font-bold">Loading insights...</div>
     );
 
+    const isUrdu = (text) => /[\u0600-\u06FF]/.test(text);
+
     return (
         <section className="py-24 bg-background relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
@@ -93,7 +95,7 @@ const Posts = () => {
                                 <span className="text-text-light text-xs font-semibold mb-3 uppercase tracking-wider">
                                     {new Date(post.publishedAt).toLocaleDateString()}
                                 </span>
-                                <h3 className="text-2xl font-bold text-primary mb-4 line-clamp-2 group-hover:text-secondary-color transition-colors">
+                                <h3 className={`text-2xl font-bold text-primary mb-4 line-clamp-2 group-hover:text-secondary-color transition-colors ${isUrdu(post.title) ? "urdu text-3xl" : ""}`}>
                                     {post.title}
                                 </h3>
                                 <div className="mt-auto pt-6 border-t border-gray-50 flex items-center justify-between">

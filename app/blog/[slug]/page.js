@@ -6,6 +6,8 @@ import { FaArrowLeftLong, FaRegCalendar, FaRegClock, FaShareNodes } from "react-
 
 export const revalidate = 60;
 
+const isUrdu = (text) => /[\u0600-\u06FF]/.test(text);
+
 const components = {
     types: {
         image: ({ value }) => (
@@ -27,14 +29,14 @@ const components = {
         ),
     },
     block: {
-        h1: ({ children }) => <h1 className="text-4xl md:text-5xl font-extrabold text-primary mt-16 mb-8 tracking-tight">{children}</h1>,
-        h2: ({ children }) => <h2 className="text-3xl md:text-4xl font-bold text-primary mt-12 mb-6 tracking-tight relative pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-16 after:h-1 after:bg-golden after:rounded-full">{children}</h2>,
-        h3: ({ children }) => <h3 className="text-2xl md:text-3xl font-bold text-primary mt-10 mb-5 tracking-tight">{children}</h3>,
-        normal: ({ children }) => <p className="text-text-light/90 text-lg md:text-xl leading-relaxed mb-8 font-light">{children}</p>,
+        h1: ({ children }) => <h1 className={`text-4xl md:text-5xl font-extrabold text-primary mt-16 mb-8 tracking-tight ${isUrdu(children?.[0]) ? 'urdu text-6xl' : ''}`}>{children}</h1>,
+        h2: ({ children }) => <h2 className={`text-3xl md:text-4xl font-bold text-primary mt-12 mb-6 tracking-tight relative pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-16 after:h-1 after:bg-golden after:rounded-full ${isUrdu(children?.[0]) ? 'urdu text-5xl' : ''}`}>{children}</h2>,
+        h3: ({ children }) => <h3 className={`text-2xl md:text-3xl font-bold text-primary mt-10 mb-5 tracking-tight ${isUrdu(children?.[0]) ? 'urdu text-4xl' : ''}`}>{children}</h3>,
+        normal: ({ children }) => <p className={`text-text-light/90 text-lg md:text-xl leading-relaxed mb-8 font-light ${isUrdu(children?.[0]) ? 'urdu text-2xl !leading-[2.5]' : ''}`}>{children}</p>,
         blockquote: ({ children }) => (
             <div className="my-12 relative">
                 <div className="absolute top-0 left-0 w-2 h-full bg-golden rounded-full opacity-50"></div>
-                <blockquote className="pl-10 pr-6 py-4 italic text-2xl md:text-3xl text-primary/80 font-medium leading-relaxed">
+                <blockquote className={`pl-10 pr-6 py-4 italic text-2xl md:text-3xl text-primary/80 font-medium leading-relaxed ${isUrdu(children?.[0]) ? 'urdu text-4xl !leading-[2.2]' : ''}`}>
                     &quot;{children}&quot;
                 </blockquote>
             </div>
@@ -112,7 +114,7 @@ export default async function BlogPost({ params }) {
                         </span>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-black text-primary leading-[1.05] mb-12 tracking-tight">
+                    <h1 className={`text-5xl md:text-7xl font-black text-primary leading-[1.05] mb-12 tracking-tight ${isUrdu(post.title) ? 'urdu text-6xl md:text-8xl' : ''}`}>
                         {post.title}
                     </h1>
 

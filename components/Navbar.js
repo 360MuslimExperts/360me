@@ -8,11 +8,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/team", label: "Team" },
-  { href: "/blog", label: "Blogs" },
+  { href: "/blog", label: "Journal" },
+  { href: "/team", label: "Experts" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
-  { href: "/faq", label: "FAQ's" },
 ];
 
 export default function Navbar() {
@@ -102,9 +101,9 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <button className="btn text-sm px-5 py-2 rounded-full shadow-md hover:shadow-xl transform hover:-translate-y-0.5 transition-all">
-            Feedback
-          </button>
+          <Link href="/donate" className="btn text-xs px-6 py-3 rounded-full shadow-lg hover:shadow-primary/20 transition-all">
+            Donate Now
+          </Link>
         </nav>
 
         {/* Mobile Menu Overlay */}
@@ -140,9 +139,13 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <button className="btn text-lg px-8 py-3">
-                    Feedback
-                  </button>
+                  <Link
+                    href="/donate"
+                    onClick={() => setMenuOpen(false)}
+                    className="btn text-lg px-8 py-4"
+                  >
+                    Donate Now
+                  </Link>
                 </motion.li>
               </ul>
             </motion.div>

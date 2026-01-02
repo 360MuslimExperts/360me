@@ -11,38 +11,37 @@ const Hero = () => {
       {/* Overlay gradient for better text readability and vibe */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/10 to-background/50 pointer-events-none" />
 
-      <div className="relative text-center max-w-4xl px-4 font-[Outfit] z-10">
+      <div className="relative text-center max-w-4xl px-4 font-[Outfit] z-10 reveal">
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-6xl md:text-8xl font-extrabold text-primary tracking-tight leading-tight"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="text-6xl md:text-8xl font-black text-primary tracking-tight leading-[1.1]"
         >
           Welcome to <br />
-          <span className="text-golden inline-block mt-2">360 Muslim Experts</span>
+          <span className="text-golden inline-block mt-4 brightness-95">360 Muslim Experts</span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-lg md:text-2xl font-medium max-w-2xl mx-auto mt-6 mb-10 leading-relaxed text-text-light"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="text-lg md:text-2xl font-light max-w-2xl mx-auto mt-8 mb-12 leading-relaxed text-text-light/90"
         >
-          Connect with a dynamic network of professionals, scholars, and
-          creatives shaping the future. Stay updated on events, insights, and
-          opportunities in science, arts, and Islamic research.
+          Connecting a global network of professionals, scholars, and
+          creatives to bridge tradition and innovation for a brighter future.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-6 justify-center"
         >
-          <button className="btn text-lg px-10 py-4 shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+          <button className="btn text-sm px-12 py-5 shadow-2xl shadow-primary/30">
             Explore More
           </button>
-          <button className="btn-outline text-lg px-10 py-4 backdrop-blur-sm hover:-translate-y-1 transition-all duration-300">
+          <button className="btn-outline text-sm px-12 py-5 bg-white/50 backdrop-blur-md">
             Join Community
           </button>
         </motion.div>

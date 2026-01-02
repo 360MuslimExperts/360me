@@ -16,6 +16,8 @@ export default async function BlogPage() {
     "author": author->name
   }`);
 
+    const isUrdu = (text) => /[\u0600-\u06FF]/.test(text);
+
     return (
         <div className="min-h-screen bg-background pt-36 pb-24 selection:bg-golden/30">
             <div className="max-w-7xl mx-auto px-6">
@@ -91,7 +93,7 @@ export default async function BlogPage() {
                                     </span>
                                 </div>
 
-                                <h2 className={`font-black text-primary group-hover:text-golden transition-colors leading-[1.1] mb-6 ${idx === 0 ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-3xl'}`}>
+                                <h2 className={`font-black text-primary group-hover:text-golden transition-colors leading-[1.1] mb-6 ${idx === 0 ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-3xl'} ${isUrdu(post.title) ? "urdu text-5xl" : ""}`}>
                                     <Link href={`/blog/${post.slug}`}>
                                         {post.title}
                                     </Link>
