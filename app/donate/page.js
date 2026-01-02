@@ -82,7 +82,7 @@ export default function DonatePage() {
 
                     <div className="max-w-2xl mx-auto p-12 bg-background rounded-[3rem] border border-gray-100 italic text-text-light/60">
                         <FaHeart className="text-golden mx-auto mb-6 text-2xl" />
-                        "The example of those who spend their wealth in the way of Allah is like a seed [of grain] which grows seven spikes; in each spike is a hundred grains. And Allah multiplies [His reward] for whom He wills." (2:261)
+                        &quot;The example of those who spend their wealth in the way of Allah is like a seed [of grain] which grows seven spikes; in each spike is a hundred grains. And Allah multiplies [His reward] for whom He wills.&quot; (2:261)
                     </div>
                 </section>
             </div>
