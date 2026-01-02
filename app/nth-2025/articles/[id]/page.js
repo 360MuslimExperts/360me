@@ -1,5 +1,4 @@
-// Remove this line
-// export const runtime = 'edge';
+export const runtime = 'edge';
 
 import ArticleLayout from "@/components/ArticleLayout";
 

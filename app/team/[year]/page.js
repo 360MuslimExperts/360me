@@ -1,5 +1,7 @@
 "use client";
 
+export const runtime = 'edge';
+
 import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
@@ -65,8 +67,8 @@ export default function TeamYearPage() {
                                 key={yr}
                                 href={`/team/${yr}`}
                                 className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${year === yr
-                                        ? 'bg-golden text-black shadow-md'
-                                        : 'bg-white/50 text-text-light hover:bg-white border border-transparent hover:border-golden'
+                                    ? 'bg-golden text-black shadow-md'
+                                    : 'bg-white/50 text-text-light hover:bg-white border border-transparent hover:border-golden'
                                     }`}
                             >
                                 {yr}
