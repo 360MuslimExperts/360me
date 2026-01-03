@@ -94,7 +94,7 @@ export default async function BlogPage() {
                                     </span>
                                 </div>
 
-                                <h2 className={`font-black text-primary group-hover:text-golden transition-colors leading-[1.1] mb-6 ${idx === 0 ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-3xl'} ${isUrdu(post.title) ? "urdu text-5xl" : ""}`}>
+                                <h2 className={`font-black text-primary group-hover:text-golden transition-colors leading-[1.1] mb-6 ${idx === 0 ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-3xl'} ${isUrdu(post.title) ? "urdu" : ""}`}>
                                     <Link href={`/blog/${post.slug}`}>
                                         {post.title}
                                     </Link>
