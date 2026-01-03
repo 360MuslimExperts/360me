@@ -19,8 +19,8 @@ const experts = [
     },
     {
         name: "Syed Hammad",
-        role: "Making Things Work (Eventually)",
-        specialty: "Being Nice Person",
+        role: "Technical Director",
+        specialty: "Making Things Work (Eventually)",
         image: "/team/syed-hammad.png",
     }
 ];
