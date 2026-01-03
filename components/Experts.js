@@ -14,7 +14,7 @@ const experts = [
     {
         name: "Zain Salim",
         role: "Content Director",
-        specialty: "Digital Media & Strategy",
+        specialty: "Literature & Strategy",
         image: "/experts/zain-salim.jpg",
     },
     {
@@ -61,7 +61,7 @@ const Experts = () => {
                         >
                             <div className="relative h-full bg-white rounded-[2rem] p-8 pt-16 md:pt-16 mt-12 md:mt-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] border border-gray-100 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(74,29,18,0.1)] hover:-translate-y-2 overflow-visible">
                                 {/* Floating Avatar */}
-                                <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-32 h-32 md:w-38 md:h-38">
+                                <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-32 h-32 md:w-38 md:h-38">
                                     <div className="absolute inset-0 bg-gradient-to-tr from-golden to-secondary rounded-full animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-md" />
                                     <div className="relative w-full h-full rounded-full border-[6px] border-white shadow-xl overflow-hidden bg-gray-100">
                                         <Image
