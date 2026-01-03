@@ -4,7 +4,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { FaBookQuran, FaGraduationCap, FaPalette } from "react-icons/fa6";
 
 const AboutPage = () => {
     // Animation variants
@@ -163,23 +162,32 @@ const AboutPage = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {[
-                            { title: "Quran", icon: <FaBookQuran size={40} />, color: "bg-green-100 text-green-700" },
-                            { title: "Education", icon: <FaGraduationCap size={40} />, color: "bg-blue-100 text-blue-700" },
-                            { title: "Creativity", icon: <FaPalette size={40} />, color: "bg-purple-100 text-purple-700" },
+                            { title: "Quran", image: "/about/quran.png" },
+                            { title: "Education", image: "/about/education.png" },
+                            { title: "Creativity", image: "/about/creativity.png" },
                         ].map((item, idx) => (
                             <motion.div
                                 key={item.title}
-                                initial={{ opacity: 0, scale: 0.9 }}
+                                initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: idx * 0.1, type: "spring" }}
+                                transition={{ delay: idx * 0.15, type: "spring", stiffness: 200 }}
                                 viewport={{ once: true }}
-                                whileHover={{ y: -10 }}
-                                className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 flex flex-col items-center gap-6 group hover:border-golden/30 transition-all"
+                                whileHover={{ y: -10, scale: 1.05 }}
+                                className="flex flex-col items-center justify-center gap-6 group"
                             >
-                                <div className={`w-20 h-20 rounded-full ${item.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                                    {item.icon}
+                                <div className="w-40 h-40 md:w-56 md:h-56 flex items-center justify-center relative">
+                                    {/* Hover Glow */}
+                                    <div className="absolute inset-0 bg-golden/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-75" />
+
+                                    <Image
+                                        src={item.image}
+                                        alt={item.title}
+                                        width={250}
+                                        height={250}
+                                        className="w-full h-full object-contain drop-shadow-2xl z-10 transition-all duration-500 group-hover:rotate-3 group-hover:scale-110"
+                                    />
                                 </div>
-                                <h3 className="text-2xl font-bold text-primary">{item.title}</h3>
+                                <h3 className="text-2xl md:text-3xl font-extrabold text-primary group-hover:text-golden transition-colors">{item.title}</h3>
                             </motion.div>
                         ))}
                     </div>
