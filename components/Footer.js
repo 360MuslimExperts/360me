@@ -51,16 +51,16 @@ export default function Footer() {
           </div>
 
           {/* Links & Initiatives (Side by side on mobile, separate cols on desktop) */}
-          <div className="col-span-1 md:col-span-5 flex flex-row justify-between md:justify-around gap-8 md:gap-12 w-full md:w-auto">
+          <div className="col-span-1 md:col-span-5 flex flex-row justify-around gap-8 md:gap-12 w-full md:w-auto">
             {/* Quick Links */}
-            <div>
+            <div className="w-full flex flex-col items-center text-center">
               <h3 className="text-lg font-semibold text-golden mb-6">Quick Links</h3>
               <ul className="space-y-3">
                 {["Home", "Contact", "Team", "About"].map((item) => (
                   <li key={item}>
                     <Link
                       href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      className="text-white/80 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block"
+                      className="text-white/80 hover:text-white hover:scale-105 transition-all duration-200 inline-block"
                     >
                       {item}
                     </Link>
@@ -70,7 +70,7 @@ export default function Footer() {
             </div>
 
             {/* Initiatives */}
-            <div>
+            <div className="w-full flex flex-col items-center text-center">
               <h3 className="text-lg font-semibold text-golden mb-6">Our Initiatives</h3>
               <ul className="space-y-3">
                 {[
@@ -82,7 +82,7 @@ export default function Footer() {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="text-white/80 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block"
+                      className="text-white/80 hover:text-white hover:scale-105 transition-all duration-200 inline-block"
                     >
                       {item.label}
                     </Link>
