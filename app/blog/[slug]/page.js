@@ -122,7 +122,7 @@ export default async function BlogPost({ params }) {
                         </span>
                     </div>
 
-                    <h1 className={`text-5xl md:text-7xl font-black text-primary leading-[1.05] mb-12 tracking-tight ${isUrdu(post.title) ? 'urdu text-6xl md:text-8xl' : ''}`}>
+                    <h1 className={`text-4xl md:text-6xl font-black text-primary leading-[1.05] mb-9 tracking-tight text-center ${isUrdu(post.title) ? 'rtl urdu text-3xl md:text-5xl' : ''}`}>
                         {post.title}
                     </h1>
 
