@@ -63,7 +63,7 @@ const Experts = () => {
                                 {/* Floating Avatar */}
                                 <div className="absolute -top-14 left-1/2 -translate-x-1/2 w-32 h-32 md:w-38 md:h-38">
                                     <div className="absolute inset-0 bg-gradient-to-tr from-golden to-secondary rounded-full animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-md" />
-                                    <div className="relative w-full h-full rounded-full border-[6px] border-white shadow-xl overflow-hidden bg-gray-100">
+                                    <div className="relative w-full h-full rounded-full border-[4px] border-white shadow-xl overflow-hidden bg-gray-100">
                                         <Image
                                             src={expert.image}
                                             alt={expert.name}
