@@ -45,7 +45,7 @@ const Hero = () => {
             </button>
           </Link>
           <Link href="/contact">
-            <button className="btn-outline text-sm px-12 py-5 bg-white/50 backdrop-blur-md">
+            <button className="btn-outline text-sm px-12 py-5 bg-white/50 backdrop-blur-md hover:text-primary">
               Join Community
             </button>
           </Link>
