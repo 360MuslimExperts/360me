@@ -204,14 +204,6 @@ export default async function BlogPost({ params }) {
                         </div>
                     </section>
                 )}
-
-                <footer className="mt-24 pt-16 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-text-light/40 text-sm font-medium">© {new Date().getFullYear()} 360 Muslim Experts. All rights reserved.</p>
-                    <div className="flex gap-8">
-                        <Link href="/privacy" className="text-text-light/40 hover:text-primary text-sm font-medium">Privacy</Link>
-                        <Link href="/terms" className="text-text-light/40 hover:text-primary text-sm font-medium">Terms</Link>
-                    </div>
-                </footer>
             </div>
         </article>
     );
