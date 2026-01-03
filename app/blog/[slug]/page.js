@@ -69,7 +69,14 @@ export default async function BlogPost({ params }) {
     mainImage,
     body,
     "author": author->name,
-    "authorImage": author->image
+    "authorImage": author->image,
+    "relatedPosts": *[_type == "post" && slug.current != $slug] | order(publishedAt desc) [0..1] {
+      _id,
+      title,
+      "slug": slug.current,
+      publishedAt,
+      mainImage
+    }
   }`, { slug });
 
     if (!post) return (
@@ -166,6 +173,37 @@ export default async function BlogPost({ params }) {
                         </Link>
                     </div>
                 </section>
+
+                {/* Related Posts */}
+                {post.relatedPosts && post.relatedPosts.length > 0 && (
+                    <section className="mt-24">
+                        <h3 className="text-4xl font-black text-primary mb-12">More to Read</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {post.relatedPosts.map((related) => (
+                                <Link key={related._id} href={`/blog/${related.slug}`} className="group bg-white rounded-3xl p-6 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
+                                    <div className="flex flex-col h-full">
+                                        <div className="relative w-full h-48 rounded-2xl overflow-hidden bg-gray-100 mb-6">
+                                            {related.mainImage ? (
+                                                <Image
+                                                    src={urlFor(related.mainImage).url()}
+                                                    alt={related.title}
+                                                    fill
+                                                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                                />
+                                            ) : (
+                                                <div className="flex items-center justify-center h-full text-primary/20 font-black text-2xl">360ME</div>
+                                            )}
+                                        </div>
+                                        <h4 className={`text-xl font-bold text-primary mb-3 group-hover:text-golden transition-colors ${isUrdu(related.title) ? 'urdu' : ''}`}>
+                                            {related.title}
+                                        </h4>
+                                        <span className="text-sm text-text-light/60 mt-auto font-bold uppercase tracking-widest">{new Date(related.publishedAt).toLocaleDateString()}</span>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </section>
+                )}
 
                 <footer className="mt-24 pt-16 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-text-light/40 text-sm font-medium">© {new Date().getFullYear()} 360 Muslim Experts. All rights reserved.</p>

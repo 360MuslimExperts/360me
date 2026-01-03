@@ -110,7 +110,14 @@ const ContactPage = () => {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-primary mb-1">Address</h3>
-                                <p className="text-text-light leading-relaxed">House No. 74, Phase 2, Wapda Town, Lahore 54770, Pakistan</p>
+                                <a
+                                    href="https://maps.app.goo.gl/wqUiLjRAjmwpAJETA"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-text-light leading-relaxed hover:text-golden transition-colors"
+                                >
+                                    House No. 74, Phase 2, Wapda Town, Lahore 54770, Pakistan
+                                </a>
                             </div>
                         </motion.div>
 

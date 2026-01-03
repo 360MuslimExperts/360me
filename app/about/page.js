@@ -4,6 +4,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import TypewriterText from "@/components/TypewriterText";
+import LogoComparison from "@/components/LogoComparison";
 
 const AboutPage = () => {
     // Animation variants
@@ -33,20 +35,21 @@ const AboutPage = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
                 <div className="absolute top-20 right-0 w-96 h-96 bg-golden/10 rounded-full blur-3xl -z-10" />
 
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="max-w-4xl mx-auto"
-                >
+                <div className="max-w-4xl mx-auto">
                     <span className="text-golden font-bold tracking-wider uppercase text-sm mb-4 block">Who Are We?</span>
-                    <h1 className="text-5xl md:text-7xl font-extrabold text-primary mb-6 tracking-tight">
-                        About <span className="text-golden">360 ME</span>
-                    </h1>
-                    <p className="text-xl text-text-light max-w-2xl mx-auto leading-relaxed">
+                    <TypewriterText
+                        text="About 360 ME"
+                        className="text-5xl md:text-7xl font-extrabold text-primary mb-6 tracking-tight"
+                    />
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1 }}
+                        className="text-xl text-text-light max-w-2xl mx-auto leading-relaxed"
+                    >
                         A professional organization embodying Islamic values, welcoming Muslims and non-Muslims alike to explore the true essence of our faith.
-                    </p>
-                </motion.div>
+                    </motion.p>
+                </div>
             </section>
 
             {/* Quran Verse (Theme) */}
@@ -70,7 +73,7 @@ const AboutPage = () => {
 
             {/* Foundation & History */}
             <section className="py-20 px-4">
-                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div className="max-w-4xl mx-auto text-center">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -86,20 +89,6 @@ const AboutPage = () => {
                         <motion.p variants={itemVariants} className="text-text-light text-lg leading-relaxed">
                             Starting as a medical student with a divinely inspired vision, Dr. Zain initiated this organization to serve Allah SWT, believing deeply in His signs and guidance.
                         </motion.p>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="relative"
-                    >
-                        {/* Abstract image representation since we might not have a photo */}
-                        <div className="aspect-square bg-gradient-to-br from-primary via-secondary to-golden rounded-3xl opacity-10 rotate-3 absolute inset-0" />
-                        <div className="aspect-square bg-white rounded-3xl shadow-xl border border-gray-100 relative z-10 flex items-center justify-center p-8">
-                            <Image src="/logo-512.png" alt="360ME Foundation" width={300} height={300} className="w-2/3 h-2/3 object-contain opacity-90" />
-                        </div>
                     </motion.div>
                 </div>
             </section>
@@ -197,18 +186,32 @@ const AboutPage = () => {
             {/* Logo & Diversity */}
             <section className="py-20 px-4 bg-primary text-white relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/bg-pattern.svg')] opacity-5" /> {/* Fallback pattern if exists, else just subtle texture */}
-                <div className="max-w-4xl mx-auto text-center relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h2 className="text-3xl md:text-5xl font-bold mb-8">Our Creative Identity</h2>
-                        <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8">
-                            Our logo features metaphors representing community aspects, inspired by reflections on the world and ourselves. We encourage creative thinkers to join—experts from business, arts, engineering, and more—enriching our community under the <span className="text-golden font-bold">360 umbrella</span>.
-                        </p>
-                    </motion.div>
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <div className="relative">
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-golden/20 blur-[100px] rounded-full pointer-events-none" />
+                                <LogoComparison />
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <h2 className="text-3xl md:text-5xl font-bold mb-8">Our Creative Identity</h2>
+                            <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8">
+                                Our logo features metaphors representing community aspects, inspired by reflections on the world and ourselves. We encourage creative thinkers to join—experts from business, arts, engineering, and more—enriching our community under the <span className="text-golden font-bold">360 umbrella</span>.
+                            </p>
+                        </motion.div>
+                    </div>
                 </div>
             </section>
 
