@@ -83,6 +83,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  aria-current={isActive(link.href) ? "page" : undefined}
                   className={`relative font-[Outfit] text-base font-medium transition-all duration-300 ${isActive(link.href)
                     ? "text-golden font-semibold"
                     : "text-primary hover:text-golden"

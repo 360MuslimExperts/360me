@@ -1,5 +1,19 @@
 import "./globals.css";
 import ClientLayout from "./_layout";
+import { Outfit, Noto_Nastaliq_Urdu } from "next/font/google";
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+const notoNastaliqUrdu = Noto_Nastaliq_Urdu({
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  variable: "--font-urdu",
+  display: "swap",
+});
 
 export const metadata = {
   title: {
@@ -46,7 +60,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${notoNastaliqUrdu.variable}`}>
       <ClientLayout>
         {children}
       </ClientLayout>
