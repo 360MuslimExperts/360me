@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaPaperPlane, FaPhone, FaLocationDot, FaEnvelope, FaInstagram, FaFacebookF, FaYoutube, FaXTwitter } from "react-icons/fa6";
+import { FaPaperPlane, FaPhone, FaLocationDot, FaEnvelope, FaFacebookF, FaWhatsapp } from "react-icons/fa6";
 
 const ContactPage = () => {
     const [formState, setFormState] = useState({
@@ -91,8 +91,16 @@ const ContactPage = () => {
                                 <FaPhone size={24} />
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-primary mb-1">Phone</h3>
-                                <a href="tel:+923356222019" className="text-primary font-semibold hover:underline">+92 335 622 2019</a>
+                                <h3 className="text-xl font-bold text-primary mb-1">Phone & WhatsApp</h3>
+                                <div className="flex flex-col gap-1">
+                                    <a href="tel:+923356222019" className="text-primary font-semibold hover:underline">
+                                        +92 335 622 2019
+                                    </a>
+                                    <a href="https://wa.me/923356222019" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-600 font-bold hover:underline text-sm mt-1">
+                                        <FaWhatsapp size={18} />
+                                        Chat on WhatsApp
+                                    </a>
+                                </div>
                             </div>
                         </motion.div>
 
@@ -106,25 +114,26 @@ const ContactPage = () => {
                             </div>
                         </motion.div>
 
-                        {/* Social Connect */}
-                        <motion.div variants={itemVariants} className="pt-4">
-                            <div className="flex gap-4">
-                                {[
-                                    { icon: <FaInstagram />, href: "https://instagram.com/360_muslimexperts/", color: "hover:bg-pink-500" },
-                                    { icon: <FaFacebookF />, href: "https://facebook.com/360MuslimExpertsPak", color: "hover:bg-blue-600" },
-                                    { icon: <FaYoutube />, href: "https://youtube.com/c/360MuslimExperts", color: "hover:bg-red-600" },
-                                    { icon: <FaXTwitter />, href: "https://x.com/360muslimexpert", color: "hover:bg-black" }
-                                ].map((item, idx) => (
-                                    <a
-                                        key={idx}
-                                        href={item.href}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className={`w-12 h-12 flex items-center justify-center rounded-xl bg-white shadow-md text-primary transition-all duration-300 ${item.color} hover:text-white hover:-translate-y-1`}
-                                    >
-                                        {item.icon}
-                                    </a>
-                                ))}
+                        {/* Community Groups */}
+                        <motion.div variants={itemVariants} className="pt-6">
+                            <h3 className="text-xl font-bold text-primary mb-4">Join Our Communities</h3>
+                            <div className="flex flex-wrap gap-4">
+                                <a
+                                    href="https://www.facebook.com/groups/360muslimexpert"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex-1 min-w-[200px] flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-blue-50 text-[#1877F2] font-bold transition-all duration-300 hover:bg-[#1877F2] hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg hover:shadow-blue-500/20"
+                                >
+                                    <FaFacebookF size={20} />
+                                    Facebook Group
+                                </a>
+                                <a
+                                    href="#"
+                                    className="flex-1 min-w-[200px] flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-green-50 text-[#25D366] font-bold transition-all duration-300 hover:bg-[#25D366] hover:text-white hover:-translate-y-1 shadow-sm hover:shadow-lg hover:shadow-green-500/20"
+                                >
+                                    <FaWhatsapp size={20} />
+                                    WhatsApp Group
+                                </a>
                             </div>
                         </motion.div>
                     </motion.div>
