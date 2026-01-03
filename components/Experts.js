@@ -6,22 +6,22 @@ import { motion } from "framer-motion";
 
 const experts = [
     {
-        name: "Dr. Muhammad Zain Abbas",
+        name: "Dr. Zain Abbas",
         role: "Founding Scholar",
         specialty: "Islamic Jurisprudence & Education",
-        image: "/logo-512.png", // Using logo as fallback
+        image: "/experts/zain-abbas.jpeg",
     },
     {
-        name: "Aisha Rahman",
-        role: "Senior Consultant",
+        name: "Zain Salim",
+        role: "Content Director",
         specialty: "Digital Media & Strategy",
-        image: "/logo-512.png",
+        image: "/experts/zain-salim.jpg",
     },
     {
-        name: "Usman Khan",
-        role: "Innovation Lead",
-        specialty: "Tech for Good & Social Impact",
-        image: "/logo-512.png",
+        name: "Syed Muhammad Hammad",
+        role: "Technical Director",
+        specialty: "Being Nice Person",
+        image: "/team/syed-hammad.png",
     }
 ];
 
@@ -50,7 +50,7 @@ const Experts = () => {
                     </motion.h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-3 gap-3 md:gap-8">
                     {experts.map((expert, idx) => (
                         <motion.div
                             key={idx}
@@ -59,26 +59,29 @@ const Experts = () => {
                             transition={{ delay: idx * 0.1 }}
                             className="group relative"
                         >
-                            <div className="bg-gray-50 rounded-[2.5rem] p-8 transition-all duration-500 border border-transparent hover:border-golden/30 hover:bg-white hover:shadow-2xl">
-                                <div className="relative w-24 h-24 mb-6 mx-auto md:mx-0">
-                                    <div className="absolute inset-0 bg-golden/20 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform" />
-                                    <div className="relative w-full h-full bg-white rounded-2xl overflow-hidden border border-gray-100 flex items-center justify-center p-3">
+                            <div className="relative h-full bg-white rounded-3xl p-3 md:p-8 pt-12 md:pt-16 mt-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] border border-gray-100 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(74,29,18,0.1)] hover:-translate-y-2 overflow-visible">
+                                {/* Floating Avatar */}
+                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 md:w-28 md:h-28">
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-golden to-secondary rounded-full animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-md" />
+                                    <div className="relative w-full h-full rounded-full border-4 border-white shadow-lg overflow-hidden bg-gray-100">
                                         <Image
                                             src={expert.image}
                                             alt={expert.name}
-                                            width={80}
-                                            height={80}
-                                            className="object-contain opacity-80"
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
                                     </div>
                                 </div>
 
-                                <div className="text-center md:text-left">
-                                    <h3 className="text-2xl font-bold text-primary mb-1">{expert.name}</h3>
-                                    <p className="text-golden font-semibold text-sm uppercase tracking-wider mb-4">{expert.role}</p>
-                                    <div className="h-[1px] w-12 bg-gray-200 mb-4 mx-auto md:mx-0 group-hover:w-full transition-all duration-500" />
-                                    <p className="text-text-light text-sm leading-relaxed">
-                                        Specializing in <span className="text-primary font-medium">{expert.specialty}</span>, driving innovation and excellence within the 360ME community.
+                                <div className="text-center mt-6 md:mt-10">
+                                    <h3 className="text-xs md:text-2xl font-black text-primary mb-1 line-clamp-1 group-hover:text-golden transition-colors">{expert.name}</h3>
+                                    <p className="text-[10px] md:text-sm font-bold text-text-light/60 uppercase tracking-tight md:tracking-wider mb-2 md:mb-4 line-clamp-1">{expert.role}</p>
+
+                                    <div className="hidden md:block h-[1px] w-12 bg-gray-100 mb-4 mx-auto group-hover:w-1/2 group-hover:bg-golden transition-all duration-500" />
+
+                                    <p className="text-[10px] md:text-base text-text-light leading-snug md:leading-relaxed line-clamp-3 md:line-clamp-none">
+                                        <span className="hidden md:inline">Specializing in </span>
+                                        <span className="font-bold text-primary">{expert.specialty}</span>
                                     </p>
                                 </div>
                             </div>
