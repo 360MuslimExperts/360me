@@ -22,7 +22,7 @@ export default function LogoComparison() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full max-w-2xl aspect-square mx-auto cursor-ew-resize select-none overflow-hidden rounded-3xl shadow-2xl bg-white"
+            className="relative w-full max-w-lg aspect-square mx-auto cursor-ew-resize select-none overflow-hidden rounded-3xl shadow-2xl bg-white"
             onMouseMove={handleMove}
             onTouchMove={handleMove}
         >
