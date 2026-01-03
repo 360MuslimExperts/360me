@@ -18,7 +18,7 @@ const experts = [
         image: "/experts/zain-salim.jpg",
     },
     {
-        name: "Syed Muhammad Hammad",
+        name: "Syed Hammad",
         role: "Technical Director",
         specialty: "Being Nice Person",
         image: "/team/syed-hammad.png",
@@ -50,7 +50,7 @@ const Experts = () => {
                     </motion.h2>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3 md:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-8 px-4 md:px-0">
                     {experts.map((expert, idx) => (
                         <motion.div
                             key={idx}
@@ -59,11 +59,11 @@ const Experts = () => {
                             transition={{ delay: idx * 0.1 }}
                             className="group relative"
                         >
-                            <div className="relative h-full bg-white rounded-3xl p-3 md:p-8 pt-12 md:pt-16 mt-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] border border-gray-100 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(74,29,18,0.1)] hover:-translate-y-2 overflow-visible">
+                            <div className="relative h-full bg-white rounded-[2rem] p-8 pt-16 md:pt-16 mt-12 md:mt-8 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] border border-gray-100 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(74,29,18,0.1)] hover:-translate-y-2 overflow-visible">
                                 {/* Floating Avatar */}
-                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 md:w-28 md:h-28">
+                                <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-24 h-24 md:w-28 md:h-28">
                                     <div className="absolute inset-0 bg-gradient-to-tr from-golden to-secondary rounded-full animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-md" />
-                                    <div className="relative w-full h-full rounded-full border-4 border-white shadow-lg overflow-hidden bg-gray-100">
+                                    <div className="relative w-full h-full rounded-full border-[6px] border-white shadow-xl overflow-hidden bg-gray-100">
                                         <Image
                                             src={expert.image}
                                             alt={expert.name}
@@ -74,13 +74,13 @@ const Experts = () => {
                                 </div>
 
                                 <div className="text-center mt-6 md:mt-10">
-                                    <h3 className="text-xs md:text-2xl font-black text-primary mb-1 line-clamp-1 group-hover:text-golden transition-colors">{expert.name}</h3>
-                                    <p className="text-[10px] md:text-sm font-bold text-text-light/60 uppercase tracking-tight md:tracking-wider mb-2 md:mb-4 line-clamp-1">{expert.role}</p>
+                                    <h3 className="text-2xl md:text-2xl font-black text-primary mb-2 line-clamp-1 group-hover:text-golden transition-colors">{expert.name}</h3>
+                                    <p className="text-sm font-bold text-text-light/60 uppercase tracking-widest mb-4 line-clamp-1">{expert.role}</p>
 
-                                    <div className="hidden md:block h-[1px] w-12 bg-gray-100 mb-4 mx-auto group-hover:w-1/2 group-hover:bg-golden transition-all duration-500" />
+                                    <div className="block h-[1px] w-12 bg-gray-100 mb-4 mx-auto group-hover:w-1/2 group-hover:bg-golden transition-all duration-500" />
 
-                                    <p className="text-[10px] md:text-base text-text-light leading-snug md:leading-relaxed line-clamp-3 md:line-clamp-none">
-                                        <span className="hidden md:inline">Specializing in </span>
+                                    <p className="text-base text-text-light leading-relaxed">
+                                        <span className="inline">Specializing in </span>
                                         <span className="font-bold text-primary">{expert.specialty}</span>
                                     </p>
                                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -38,12 +39,16 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-6 justify-center"
         >
-          <button className="btn text-sm px-12 py-5 shadow-2xl shadow-primary/30">
-            Explore More
-          </button>
-          <button className="btn-outline text-sm px-12 py-5 bg-white/50 backdrop-blur-md">
-            Join Community
-          </button>
+          <Link href="/about">
+            <button className="btn text-sm px-12 py-5 shadow-2xl shadow-primary/30">
+              Explore More
+            </button>
+          </Link>
+          <Link href="/contact">
+            <button className="btn-outline text-sm px-12 py-5 bg-white/50 backdrop-blur-md">
+              Join Community
+            </button>
+          </Link>
         </motion.div>
       </div>
     </div>
