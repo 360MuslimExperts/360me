@@ -2,6 +2,7 @@ import { client, urlFor } from "@/lib/sanity";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
+import { SmartText } from '@/components/SmartText';
 import { FaArrowLeftLong, FaRegCalendar, FaRegClock, FaShareNodes } from "react-icons/fa6";
 
 export const runtime = 'edge';
@@ -30,16 +31,51 @@ const components = {
         ),
     },
     block: {
-        h1: ({ children }) => <h1 className={`text-4xl md:text-5xl font-extrabold text-primary mt-16 mb-8 tracking-tight ${isUrdu(children?.[0]) ? 'urdu text-6xl' : ''}`}>{children}</h1>,
-        h2: ({ children }) => <h2 className={`text-3xl md:text-4xl font-bold text-primary mt-12 mb-6 tracking-tight relative pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-16 after:h-1 after:bg-golden after:rounded-full ${isUrdu(children?.[0]) ? 'urdu text-5xl' : ''}`}>{children}</h2>,
-        h3: ({ children }) => <h3 className={`text-2xl md:text-3xl font-bold text-primary mt-10 mb-5 tracking-tight ${isUrdu(children?.[0]) ? 'urdu text-4xl' : ''}`}>{children}</h3>,
-        normal: ({ children }) => <p className={`text-text-light/90 text-lg md:text-xl leading-relaxed mb-8 font-light ${isUrdu(children?.[0]) ? 'urdu text-2xl !leading-[2.5]' : ''}`}>{children}</p>,
+        /**
+         * Heading 1: Large display heading
+         * SmartText handles font selection and RTL/LTR direction
+         */
+        h1: ({ children }) => (
+            <SmartText as="h1" className="text-4xl md:text-6xl font-black mt-16 mb-8 tracking-tight text-center">
+                {children}
+            </SmartText>
+        ),
+        /**
+         * Heading 2: Section heading with decorative underline
+         * Increased line-height for Urdu/Arabic readability
+         */
+        h2: ({ children }) => (
+            <SmartText as="h2" className="text-3xl md:text-4xl font-bold mt-12 mb-6 tracking-tight relative pb-4 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-16 after:h-1 after:bg-golden after:rounded-full">
+                {children}
+            </SmartText>
+        ),
+        /**
+         * Heading 3: Subsection heading
+         */
+        h3: ({ children }) => (
+            <SmartText as="h3" className="text-2xl md:text-3xl font-bold mt-10 mb-5 tracking-tight">
+                {children}
+            </SmartText>
+        ),
+        /**
+         * Normal paragraph: Body text with optimized line-height
+         * Line-height is handled by SmartText based on language detection
+         */
+        normal: ({ children }) => (
+            <SmartText as="p" className="text-lg md:text-xl mb-8 font-light">
+                {children}
+            </SmartText>
+        ),
+        /**
+         * Blockquote: Featured quote with golden accent bar
+         * Extra spacing and larger text for emphasis
+         */
         blockquote: ({ children }) => (
             <div className="my-12 relative">
                 <div className="absolute top-0 left-0 w-2 h-full bg-golden rounded-full opacity-50"></div>
-                <blockquote className={`pl-10 pr-6 py-4 italic text-2xl md:text-3xl text-primary/80 font-medium leading-relaxed ${isUrdu(children?.[0]) ? 'urdu text-4xl !leading-[2.2]' : ''}`}>
+                <SmartText as="blockquote" className="pl-10 pr-6 py-4 italic text-2xl md:text-3xl text-primary/80 font-medium">
                     &quot;{children}&quot;
-                </blockquote>
+                </SmartText>
             </div>
         ),
     },

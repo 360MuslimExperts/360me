@@ -1,11 +1,30 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/**
+ * FONT FACE DECLARATIONS
+ * Self-hosted Jameel Noori Nastaleeq for Urdu text
+ * This is the primary font for Urdu content with Noto Nastaliq Urdu as fallback
+ */
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq';
+  src: url('/fonts/jameel-noori-nastaleeq.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Light mode defaults */
 :root {
   --background: #fffaf5;
   /* Slightly warmer background */
   --foreground: #2c2c2c;
+  
+  /* Font family variables */
+  --font-outfit: 'Outfit', sans-serif;
+  --font-urdu: 'Noto Nastaliq Urdu', serif;
+  --font-arabic: 'Noto Naskh Arabic', serif;
+  --font-urdu-nastaleeq: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif;
 }
 
 html,
@@ -14,9 +33,31 @@ body {
   scroll-behavior: smooth;
 }
 
+/**
+ * URDU & ARABIC TYPOGRAPHY
+ * Urdu uses Nastaleeq script which requires more vertical space
+ * Arabic uses Naskh script which is more compact
+ */
+
+/* Urdu text - Jameel Noori Nastaleeq with fallbacks */
+.font-urdu-nastaleeq {
+  font-family: var(--font-urdu-nastaleeq);
+  line-height: 2.5; /* Extra line-height for Nastaleeq calligraphy */
+  letter-spacing: 0;
+}
+
+/* Arabic text - Noto Naskh Arabic */
+.font-arabic {
+  font-family: var(--font-arabic);
+  line-height: 2; /* Moderate line-height for Naskh */
+  letter-spacing: 0;
+}
+
+/* Legacy Urdu class for backward compatibility */
 .urdu {
-  font-family: var(--font-urdu), serif;
+  font-family: var(--font-urdu);
   line-height: 2.2;
+  letter-spacing: 0;
 }
 
 /* Tailwind theme tokens */
