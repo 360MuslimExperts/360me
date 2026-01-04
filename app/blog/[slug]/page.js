@@ -96,7 +96,70 @@ const components = {
     }
 };
 
+/**
+ * Generate dynamic metadata for SEO and social sharing
+ * Compatible with edge runtime and Cloudflare Pages
+ */
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    
+    // Fetch post data for metadata
+    const post = await client.fetch(
+        `*[_type == "post" && slug.current == $slug][0] {
+            title,
+            excerpt,
+            mainImage,
+            publishedAt
+        }`,
+        { slug }
+    );
+
+    // Fallback metadata if post not found
+    if (!post) {
+        return {
+            title: 'Post Not Found | 360 Muslim Experts',
+            description: 'The requested blog post could not be found.',
+        };
+    }
+
+    // Extract metadata with fallbacks
+    const title = post.title || 'Blog Post';
+    const description = post.excerpt || `Read ${title} on 360 Muslim Experts - Insights on technology, ethics, and Islamic innovation.`;
+    
+    // Generate absolute URL for OG image
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://360me.pages.dev';
+    const ogImage = post.mainImage 
+        ? urlFor(post.mainImage).width(1200).height(630).url()
+        : `${baseUrl}/logo-512.png`;
+
+    return {
+        title: `${title} | 360 Muslim Experts`,
+        description,
+        openGraph: {
+            title,
+            description,
+            type: 'article',
+            publishedTime: post.publishedAt,
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: title,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: [ogImage],
+        },
+    };
+}
+
 export default async function BlogPost({ params }) {
+
     const { slug } = await params;
 
     const post = await client.fetch(`*[_type == "post" && slug.current == $slug][0] {
