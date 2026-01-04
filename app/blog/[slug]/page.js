@@ -62,7 +62,7 @@ const components = {
          * Line-height is handled by SmartText based on language detection
          */
         normal: ({ children }) => (
-            <SmartText as="p" className="text-lg md:text-xl mb-8 font-light">
+            <SmartText as="p" className="text-xl md:text-2xl mb-8 font-light">
                 {children}
             </SmartText>
         ),
@@ -73,7 +73,7 @@ const components = {
         blockquote: ({ children }) => (
             <div className="my-12 relative">
                 <div className="absolute top-0 left-0 w-2 h-full bg-golden rounded-full opacity-50"></div>
-                <SmartText as="blockquote" className="pl-10 pr-6 py-4 italic text-2xl md:text-3xl text-primary/80 font-medium">
+                <SmartText as="blockquote" className="pl-10 pr-6 py-4 text-2xl not-italic md:text-3xl text-primary/80 font-medium">
                     &quot;{children}&quot;
                 </SmartText>
             </div>
