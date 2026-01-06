@@ -44,14 +44,14 @@ export default function Hero({ onExplore }) {
           {/* Scroll button */}
           <button
             onClick={onExplore}
-            className="btn text-sm px-12 py-5 shadow-2xl shadow-primary/30"
+            className="btn text-sm px-12 py-5 shadow-2xl shadow-primary/ 30 cursor-pointer"
           >
             Explore More
           </button>
 
           {/* Normal link */}
           <Link href="/contact">
-            <button className="btn-outline text-sm px-12 py-5 bg-white/50 backdrop-blur-md hover:text-primary">
+            <button className="btn-outline text-sm px-12 py-5 bg-white/50 backdrop-blur-md hover:text-primary cursor-pointer">
               Join Community
             </button>
           </Link>
