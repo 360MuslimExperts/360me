@@ -97,12 +97,13 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-golden mb-6 text-center md:text-left">Stay Updated</h3>
             <p className="text-sm text-white/70 mb-4 text-center md:text-left">Subscribe to our newsletter for the latest updates and opportunities.</p>
             <form className="space-y-3">
+              <label htmlFor="newsletter-email" className="sr-only">Email address</label>
               <input
                 type="email"
-                placeholder="Your email address"
+                id="newsletter-email" name="email" required placeholder="Your email address"
                 className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-golden focus:ring-1 focus:ring-golden transition-all placeholder:text-white/30"
               />
-              <button className="w-full bg-golden text-black font-semibold rounded-xl px-4 py-3 hover:bg-white transition-colors duration-300 shadow-lg shadow-golden/20">
+              <button type="submit" className="w-full bg-golden text-black font-semibold rounded-xl px-4 py-3 hover:bg-white transition-colors duration-300 shadow-lg shadow-golden/20">
                 Subscribe
               </button>
             </form>
