@@ -57,6 +57,8 @@ export default async function BlogPage() {
                                         src={urlFor(post.mainImage).url()}
                                         alt={post.title}
                                         fill
+                                        priority={idx === 0}
+                                        sizes={idx === 0 ? "(max-width: 1024px) 100vw, 1280px" : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"}
                                         className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                     />
                                 ) : (
