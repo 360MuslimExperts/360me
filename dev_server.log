@@ -1,0 +1,15 @@
+
+> cdfr@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.2:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.4s
+ ○ Compiling /blog ...
+ ✓ Compiled /blog in 13.8s (1996 modules)
+The default export of @sanity/image-url has been deprecated. Use the named export `createImageUrlBuilder` instead.
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /blog 200 in 18492ms
