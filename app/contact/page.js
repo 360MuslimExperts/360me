@@ -176,12 +176,12 @@ const ContactPage = () => {
                                     <h2 className="text-2xl font-bold text-primary mb-6">Fill The Form To Get Responded Soon</h2>
 
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-primary uppercase tracking-wider ml-1">Name</label>
+                                        <label htmlFor="name" className="text-sm font-bold text-primary uppercase tracking-wider ml-1">Name</label>
                                         <input
                                             required
                                             type="text"
                                             className="w-full bg-gray-50 border-2 border-transparent focus:border-primary/10 focus:bg-white rounded-2xl px-6 py-4 outline-none transition-all"
-                                            placeholder="Your Name"
+                                            id="name" name="name" placeholder="Your Name"
                                             value={formState.name}
                                             onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                                         />
@@ -189,23 +189,23 @@ const ContactPage = () => {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-primary uppercase tracking-wider ml-1">WhatsApp Contact</label>
+                                            <label htmlFor="whatsapp" className="text-sm font-bold text-primary uppercase tracking-wider ml-1">WhatsApp Contact</label>
                                             <input
                                                 required
                                                 type="text"
                                                 className="w-full bg-gray-50 border-2 border-transparent focus:border-primary/10 focus:bg-white rounded-2xl px-6 py-4 outline-none transition-all"
-                                                placeholder="Your WhatsApp Number"
+                                                id="whatsapp" name="whatsapp" placeholder="Your WhatsApp Number"
                                                 value={formState.whatsapp}
                                                 onChange={(e) => setFormState({ ...formState, whatsapp: e.target.value })}
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-primary uppercase tracking-wider ml-1">Email</label>
+                                            <label htmlFor="email" className="text-sm font-bold text-primary uppercase tracking-wider ml-1">Email</label>
                                             <input
                                                 required
                                                 type="email"
                                                 className="w-full bg-gray-50 border-2 border-transparent focus:border-primary/10 focus:bg-white rounded-2xl px-6 py-4 outline-none transition-all"
-                                                placeholder="Your Email"
+                                                id="email" name="email" placeholder="Your Email"
                                                 value={formState.email}
                                                 onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                                             />
@@ -213,12 +213,12 @@ const ContactPage = () => {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-primary uppercase tracking-wider ml-1">Your Message</label>
+                                        <label htmlFor="message" className="text-sm font-bold text-primary uppercase tracking-wider ml-1">Your Message</label>
                                         <textarea
                                             required
                                             rows="5"
                                             className="w-full bg-gray-50 border-2 border-transparent focus:border-primary/10 focus:bg-white rounded-2xl px-6 py-4 outline-none transition-all resize-none"
-                                            placeholder="Your Message"
+                                            id="message" name="message" placeholder="Your Message"
                                             value={formState.message}
                                             onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                                         ></textarea>
