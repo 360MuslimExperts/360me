@@ -69,6 +69,7 @@ const Experts = () => {
                                             alt={expert.name}
                                             fill
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                            sizes="(max-width: 640px) 128px, (max-width: 768px) 152px, 152px"
                                         />
                                     </div>
                                 </div>

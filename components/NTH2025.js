@@ -40,7 +40,7 @@ const NTH2025 = () => {
             width={1200}
             height={400}
             className="relative w-full h-auto rounded-2xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]"
-            priority
+            sizes="(max-width: 1280px) 100vw, 1200px"
           />
         </motion.div>
 

@@ -80,6 +80,7 @@ const Posts = () => {
                                         alt={post.title}
                                         fill
                                         className="object-cover group-hover:scale-110 transition-all duration-700"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     />
                                 ) : (
                                     <div className="text-primary/10 text-4xl font-bold italic">360ME</div>
