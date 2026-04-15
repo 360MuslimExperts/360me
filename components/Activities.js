@@ -67,6 +67,7 @@ const Activities = () => {
                 alt={activity.title}
                 fill
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
             <div className="p-8 text-center bg-white relative z-20">

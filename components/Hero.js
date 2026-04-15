@@ -2,13 +2,25 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function Hero({ onExplore }) {
   return (
     <div
-      className="relative w-full min-h-screen bg-[url('/bg-light.jpg')] bg-cover bg-center text-[var(--primary)] flex items-center justify-center overflow-hidden"
+      className="relative w-full min-h-screen text-[var(--primary)] flex items-center justify-center overflow-hidden bg-background"
     >
+      {/* Optimized Background Image */}
+      <Image
+        src="/bg-light.jpg"
+        alt="Background"
+        fill
+        priority
+        className="object-cover object-center pointer-events-none"
+        sizes="100vw"
+        quality={85}
+      />
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/10 to-background/50 pointer-events-none" />
 
@@ -44,7 +56,7 @@ export default function Hero({ onExplore }) {
           {/* Scroll button */}
           <button
             onClick={onExplore}
-            className="btn text-sm px-12 py-5 shadow-2xl shadow-primary/ 30 cursor-pointer"
+            className="btn text-sm px-12 py-5 shadow-2xl shadow-primary/30 cursor-pointer"
           >
             Explore More
           </button>
