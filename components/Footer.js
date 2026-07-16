@@ -117,9 +117,6 @@ export default function Footer() {
         <p className="text-sm text-white/50">
           © {currentYear} 360 Muslim Experts. All Rights Reserved.
         </p>
-        <p className="text-xs text-white/40 mt-2">
-          Designed & Developed by <Link href="https://ibtisam.is-a.dev" target="_blank" className="text-golden hover:underline">Ibtisam</Link>
-        </p>
       </div>
     </footer>
   );
