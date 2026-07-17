@@ -1,10 +1,14 @@
 "use client";
 
+// Force client-side execution to resolve the static prerendering error
+export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaHeart, FaHandHoldingHeart, FaLeaf, FaGlobe, FaGlobeAsia } from "react-icons/fa6";
+import { FaHeart, FaHandHoldingHeart, FaLeaf, FaGlobe } from "react-icons/fa6";
 
 export default function DonatePage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +25,7 @@ export default function DonatePage() {
         {
             id: "global",
             title: "Global Initiatives",
-            icon: <FaGlobeAsia className="text-3xl text-golden group-hover:text-white transition-colors" />,
+            icon: <FaGlobe className="text-3xl text-golden group-hover:text-white transition-colors" />,
             description: "Supporting community projects and humanitarian relief where it's needed most."
         },
         {
@@ -50,7 +54,7 @@ export default function DonatePage() {
                 {/* Hero Section */}
                 <section className="relative rounded-[3rem] overflow-hidden bg-primary p-12 md:p-24 text-white mb-24 shadow-2xl">
                     <Image
-                        src="/api/assets/graphics/donate_hero.png" // Pointing cleanly to your asset proxy setup
+                        src="/api/assets/graphics/donate_hero.png"
                         alt="Support 360ME"
                         fill
                         className="object-cover opacity-20 pointer-events-none"
@@ -175,7 +179,6 @@ export default function DonatePage() {
                             </div>
 
                             <div className="space-y-4">
-                                {/* Meezan Bank Info */}
                                 <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
                                     <div className="flex justify-between items-center mb-2">
                                         <span className="text-sm font-semibold text-golden uppercase tracking-wider">Meezan Bank</span>
@@ -209,7 +212,6 @@ export default function DonatePage() {
                                     </div>
                                 </div>
 
-                                {/* Easypaisa Info */}
                                 <div className="bg-white/5 border border-white/10 rounded-2xl p-4 flex justify-between items-center">
                                     <div>
                                         <span className="block text-xs font-semibold text-green-400 uppercase tracking-wider mb-1">Easypaisa Account</span>
