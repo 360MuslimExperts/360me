@@ -1,30 +1,29 @@
-export const runtime = "edge"; // This tells Cloudflare to run it on the edge network
+export const runtime = "edge"; // Run on the Cloudflare edge network
 
 export async function GET(request, { params }) {
-  // 1. Grab the R2 binding we added in wrangler.jsonc
-  const { env } = request.cf || {}; 
-  const bucket = env?.ASSETS_BUCKET;
+  // Next.js maps Cloudflare bindings directly to process.env
+  const bucket = process.env.ASSETS_BUCKET;
 
   if (!bucket) {
-    return new Response("R2 Binding not found. Check wrangler.jsonc", { status: 500 });
+    return new Response("R2 Binding not found. Check wrangler.jsonc or deployment settings.", { status: 500 });
   }
 
-  // 2. Extract the file path (e.g., "logo/logo-512.png")
+  // Extract the file path (e.g., "logo/logo-512.png")
   const pathArray = await params.path;
   const filePath = pathArray.join("/");
 
-  // 3. Fetch the file directly from your R2 storage
+  // Fetch the file directly from your R2 storage
   const object = await bucket.get(filePath);
 
   if (!object) {
     return new Response("Asset not found in R2 bucket", { status: 404 });
   }
 
-  // 4. Stream the file back to the browser with clean headers
+  // Stream the file back to the browser with clean headers
   const headers = new Headers();
   object.writeHttpMetadata(headers);
   headers.set("etag", object.httpEtag);
-  headers.set("Cache-Control", "public, max-age=31536000"); // Speeds it up with caching
+  headers.set("Cache-Control", "public, max-age=31536000"); // Cache at edge for speed
 
   return new Response(object.body, { headers });
 }
