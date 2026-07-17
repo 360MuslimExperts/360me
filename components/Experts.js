@@ -9,19 +9,19 @@ const experts = [
         name: "Dr. Zain Abbas",
         role: "Founding Scholar",
         specialty: "Islamic Jurisprudence & Education",
-        image: "/experts/zain-abbas.jpeg",
+        image: "/api/assets/team/image/zain-abbas.jpeg",
     },
     {
         name: "Zain Salim",
         role: "Content Director",
         specialty: "Literature & Strategy",
-        image: "/experts/zain-salim.jpg",
+        image: "/api/assets/team/image/zain-salim.jpg",
     },
     {
         name: "Syed Hammad",
         role: "Technical Director",
         specialty: "Making Things Work (Eventually)",
-        image: "/team/syed-hammad.png",
+        image: "/api/assets/team/image/syed-hammad.png",
     }
 ];
 
