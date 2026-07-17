@@ -44,7 +44,7 @@ export default function Navbar() {
         >
           <div className="relative">
             <Image
-              src="/logo-512.png"
+              src="/api/assets/logo/logo-512.png"
               alt="Logo"
               width={scrolled ? 40 : 50}
               height={scrolled ? 40 : 50}
