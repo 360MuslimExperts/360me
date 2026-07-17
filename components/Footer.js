@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import Image from "next/image";
 import { FaInstagram, FaFacebookF, FaYoutube, FaXTwitter, FaEnvelope } from "react-icons/fa6";
@@ -12,8 +11,8 @@ export default function Footer() {
       <div className="absolute top-0 left-0 w-96 h-96 bg-secondary/20 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-golden/10 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 mb-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 gap-x-8">
+      <div className="relative max-w-5xl mx-auto px-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-9 gap-y-12 gap-x-8">
 
           {/* Brand Column (Full width on mobile, 4 cols on desktop) */}
           <div className="col-span-1 md:col-span-4 space-y-6 flex flex-col items-center md:items-start text-center md:text-left">
@@ -51,7 +50,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links & Initiatives (Side by side on mobile, separate cols on desktop) */}
+          {/* Links & Initiatives (Side by side on mobile, 5 cols on desktop) */}
           <div className="col-span-1 md:col-span-5 flex flex-row justify-around gap-8 md:gap-12 w-full md:w-auto">
             {/* Quick Links */}
             <div className="w-full flex flex-col items-center text-center">
@@ -93,7 +92,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Newsletter Column (Full width on mobile, 3 cols on desktop) */}
+          {/* Newsletter Column (Commented out to clean up look and avoid broken fields)
           <div className="col-span-1 md:col-span-3">
             <h3 className="text-lg font-semibold text-golden mb-6 text-center md:text-left">Stay Updated</h3>
             <p className="text-sm text-white/70 mb-4 text-center md:text-left">Subscribe to our newsletter for the latest updates and opportunities.</p>
@@ -109,6 +108,7 @@ export default function Footer() {
               </button>
             </form>
           </div>
+          */}
 
         </div>
       </div>
