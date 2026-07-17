@@ -5,6 +5,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const TeamCard = ({ member }) => {
+    // Dynamically format the designation string
+    const displayRole = member.role === "Head" && member.category
+        ? `Head of ${member.category.charAt(0).toUpperCase() + member.category.slice(1)} Department`
+        : member.role;
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -37,7 +42,7 @@ const TeamCard = ({ member }) => {
                     {member.name}
                 </h3>
                 <p className="text-sm font-medium text-secondary mb-2 uppercase tracking-wide">
-                    {member.role}
+                    {displayRole}
                 </p>
 
                 {member.regNo && (
