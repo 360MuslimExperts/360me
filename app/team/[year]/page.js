@@ -5,14 +5,16 @@ import TeamContent from '@/components/TeamContent';
 export const runtime = 'edge';
 
 export default async function TeamYearPage({ params }) {
-    // In Next.js 15, params is a Promise
+    // 1. In Next.js 15, params is a Promise, so we await it
     const { year } = await params;
-    const teamData = getTeamData(year);
-    const availableYears = getAvailableYears();
+    
+    // 2. Await the new async database calls from lib/team.js
+    const teamData = await getTeamData(year);
+    const availableYears = await getAvailableYears();
 
     return (
         <TeamContent
-            teamData={teamData}
+            teamData={teamData || { governing: [], national: [], medico: [], media: [], technical: [] }}
             availableYears={availableYears}
             year={year}
         />
