@@ -44,3 +44,10 @@
 	 */
 	// "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
 }
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "360me-team",
+      "database_id": "041d10ce-9745-41c8-9b94-49cf27c69d97"
+    }
+  ]
