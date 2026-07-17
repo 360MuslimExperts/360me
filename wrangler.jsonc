@@ -19,6 +19,12 @@
             "database_name": "360me-team",
             "database_id": "041d10ce-9745-41c8-9b94-49cf27c69d97"
           }
+        ],
+        "r2_buckets": [
+          {
+            "binding": "ASSETS_BUCKET",
+            "bucket_name": "360me-assets"
+          }
         ]
         /**
          * Smart Placement
