@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { FaInstagram, FaFacebookF, FaYoutube, FaXTwitter, FaEnvelope } from "react-icons/fa6";
@@ -18,7 +19,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-4 space-y-6 flex flex-col items-center md:items-start text-center md:text-left">
             <div className="flex items-center gap-3">
               <div className="relative w-16 h-16">
-                <Image src="/logo-512.png" alt="360 Muslim Experts Logo" fill className="object-contain drop-shadow-lg" />
+                <Image src="/api/assets/logo/logo-512.png" alt="360 Muslim Experts Logo" fill className="object-contain drop-shadow-lg" />
               </div>
               <h2 className="text-2xl font-bold leading-tight">
                 360 Muslim <br /> <span className="text-golden">Experts</span>
