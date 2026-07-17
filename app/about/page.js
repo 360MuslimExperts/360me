@@ -151,9 +151,9 @@ const AboutPage = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {[
-                            { title: "Quran", image: "/about/quran.png" },
-                            { title: "Education", image: "/about/education.png" },
-                            { title: "Creativity", image: "/about/creativity.png" },
+                            { title: "Quran", image: "/api/assets/graphics/quran.png" },
+                            { title: "Education", image: "/api/assets/graphics/education.png" },
+                            { title: "Creativity", image: "/api/assets/graphics/creativity.png" },
                         ].map((item, idx) => (
                             <motion.div
                                 key={item.title}
