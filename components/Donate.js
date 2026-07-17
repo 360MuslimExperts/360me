@@ -8,19 +8,19 @@ const donateItems = [
   { 
     id: "education", 
     title: "Education", 
-    img: "/donate/education.png", 
+    img: "/api/assets/graphics/education.png", 
     desc: "Sponsor books, school supplies, and digital literacy training for underprivileged youth." 
   },
   { 
     id: "food", 
     title: "Food", 
-    img: "/donate/food.png", 
+    img: "/api/assets/graphics/food.png", 
     desc: "Provide raw rations and cooked hot meals to families facing extreme financial hardship." 
   },
   { 
     id: "health", 
     title: "Health", 
-    img: "/donate/health.png", 
+    img: "/api/assets/graphics/health.png", 
     desc: "Fund medical camps, basic medicines, and healthcare access managed by Medico 360 experts." 
   },
 ];
