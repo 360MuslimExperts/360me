@@ -1,7 +1,19 @@
 "use client";
 
 import React from "react";
-import { formatDepartmentName } from "@/lib/team";
+
+// Move the text formatting helper inside this client file directly
+function formatDepartmentName(key) {
+    const map = {
+        'governing': 'Governing Body',
+        'national': 'National Team',
+        'medico': 'Medico 360',
+        'media': 'Media Team',
+        'technical': 'Technical Team',
+        'education': '360 Education'
+    };
+    return map[key.toLowerCase()] || key.charAt(0).toUpperCase() + key.slice(1);
+}
 
 const DepartmentFilter = ({ departments, activeDept, onSelect }) => {
     return (
