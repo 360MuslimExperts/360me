@@ -5,10 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const TeamCard = ({ member }) => {
-    // Helper to capitalize first letter
     const capitalize = (str) => str ? str.charAt(0).toUpperCase() + str.slice(1) : "";
 
-    // Formatting logic
     let displayRole = member.role;
     const deptName = capitalize(member.category || member.dept || "");
 
@@ -20,11 +18,11 @@ const TeamCard = ({ member }) => {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
+            viewport={{ once: true, margin: "-50px" }} // Triggers quickly on scroll
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.25, ease: "easeOut" }} // Snappy animation speed
             className="group relative bg-white rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col items-center text-center overflow-hidden"
         >
             <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-br from-primary/10 to-transparent z-0" />
@@ -33,11 +31,12 @@ const TeamCard = ({ member }) => {
                 <div className="absolute inset-0 bg-golden/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300" />
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-md">
                     <Image
-                        src={member.image || "/api/assets/logo/logo-512.png"} 
+                        // Uses tiny 128px fallback instead of massive 512px asset
+                        src={member.image || "/api/assets/logo/logo-256.webp"} 
                         alt={member.name}
-                        width={128}
-                        height={128}
-                        className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${!member.image ? 'p-4 bg-gray-50' : ''}`}
+                        width={256} // Optimized delivery size target
+                        height={256}
+                        className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${!member.image ? 'p-4 bg-gray-50' : ''}`}
                     />
                 </div>
             </div>

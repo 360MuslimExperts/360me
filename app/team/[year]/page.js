@@ -4,18 +4,26 @@ import TeamContent from '@/components/TeamContent';
 
 export const runtime = 'edge';
 
+export default async function TeamYearPage({ params }) import React from 'react';
+import { getTeamData, getAvailableYears } from '@/lib/team';
+import TeamContent from '@/components/TeamContent';
+
+export const runtime = 'edge';
+
 export default async function TeamYearPage({ params }) {
-    // 1. In Next.js 15, params is a Promise, so we await it
+    // 1. Await the params Promise for Next.js 15 compatibility
     const { year } = await params;
     
-    // 2. Await the new async database calls from lib/team.js
-    const teamData = await getTeamData(year);
-    const availableYears = await getAvailableYears();
+    // 2. Run both D1 database requests simultaneously in parallel
+    const [teamData, availableYears] = await Promise.all([
+        getTeamData(year),
+        getAvailableYears()
+    ]);
 
     return (
         <TeamContent
             teamData={teamData || { governing: [], national: [], medico: [], media: [], technical: [] }}
-            availableYears={availableYears}
+            availableYears={availableYears || []}
             year={year}
         />
     );

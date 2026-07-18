@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
 
 export default function TeamPage() {
-    redirect('/team/2025');
+    redirect('/team/2026');
 }
