@@ -1,5 +1,6 @@
 import "./globals.css";
-import ClientLayout from "./_layout";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { Outfit, Noto_Nastaliq_Urdu } from "next/font/google";
 
 const outfit = Outfit({
@@ -32,14 +33,7 @@ export const metadata = {
     siteName: "360 Muslim Experts",
     title: "360 Muslim Experts - Empowering the Global Ummah",
     description: "Join a vibrant community of professionals, scholars, and creatives. Explore Quranic education, modern innovation, and impactful initiatives.",
-    images: [
-      {
-        url: "/logo-512.png",
-        width: 512,
-        height: 512,
-        alt: "360ME Logo",
-      },
-    ],
+    images: [{ url: "/logo-512.png", width: 512, height: 512, alt: "360ME Logo" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -48,22 +42,18 @@ export const metadata = {
     images: ["/logo-512.png"],
     creator: "@360muslimexpert",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/logo-512.png",
-  },
+  robots: { index: true, follow: true },
+  icons: { icon: "/favicon.ico", apple: "/logo-512.png" },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${notoNastaliqUrdu.variable}`}>
-      <ClientLayout>
+      <body suppressHydrationWarning>
+        <Navbar />
         {children}
-      </ClientLayout>
+        <Footer />
+      </body>
     </html>
   );
 }
