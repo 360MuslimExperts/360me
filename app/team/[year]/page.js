@@ -3,12 +3,12 @@ import { getTeamData, getAvailableYears } from '@/lib/team';
 import TeamContent from '@/components/TeamContent';
 
 export const runtime = 'edge';
+// ⚡ Destroys the layout cache lag on state routing swaps completely
+export const dynamic = 'force-dynamic';
 
 export default async function TeamYearPage({ params }) {
-    // 1. Await the params Promise for Next.js 15 compatibility
     const { year } = await params;
     
-    // 2. Fetch both datasets simultaneously in parallel
     const [teamData, availableYears] = await Promise.all([
         getTeamData(year),
         getAvailableYears()
