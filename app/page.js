@@ -1,11 +1,14 @@
 "use client";
 import { useRef } from "react";
+import dynamic from 'next/dynamic'; // 1. Import dynamic
 import Hero from "@/components/Hero";
-import NTHSection from "@/components/NTH2025";
-import Donate from "@/components/Donate";
-import Activities from "@/components/Activities";
-import Experts from "@/components/Experts";
-import Posts from "@/components/Posts";
+
+// 2. Dynamically import sections so they don't block the initial load
+const NTHSection = dynamic(() => import("@/components/NTH2025"), { loading: () => <div className="h-96" /> });
+const Activities = dynamic(() => import("@/components/Activities"));
+const Experts = dynamic(() => import("@/components/Experts"));
+const Posts = dynamic(() => import("@/components/Posts"));
+const Donate = dynamic(() => import("@/components/Donate"));
 
 export default function Home() {
   const nextSectionRef = useRef(null);
