@@ -6,39 +6,39 @@ import Link from "next/link";
 export default function NTH2025Hub() {
   const sections = [
     {
-      title: "Articles",
-      description: "Read insightful articles from participants and experts.",
+      title: "Articles & Insights",
+      description: "Review competition entries and critical research submissions exploring modern Islamic frameworks.",
       href: "/nth-2025/articles",
     },
   ];
 
   return (
-    <main className="min-h-screen bg-[var(--background)] py-16 px-6 flex flex-col items-center">
-      {/* Header */}
-      <div className="max-w-4xl text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-4">
+    <main className="min-h-[80vh] bg-background py-16 px-6 flex flex-col items-center justify-center font-[Outfit]">
+      {/* Header Container */}
+      <div className="max-w-4xl text-center mb-16">
+        <span className="text-golden font-bold tracking-widest uppercase text-xs block mb-2">Historical Archive</span>
+        <h1 className="text-4xl md:text-5xl font-black text-primary tracking-tight">
           National Talent Hunt 2025
         </h1>
-        <p className="text-lg md:text-xl text-[var(--text)]">
-          Explore competitions, submissions, and creative projects from talented peers.
+        <p className="text-base md:text-lg text-text-light/80 font-light max-w-2xl mx-auto mt-4 leading-relaxed">
+          Explore complete collection logs, published articles, and structured technical works curated during the 2025 session.
         </p>
       </div>
 
-      {/* Section Cards */}
-      <div className="w-full max-w-4xl grid gap-8 sm:grid-cols-1 md:grid-cols-2">
+      {/* Grid Router System */}
+      <div className="w-full max-w-xl grid gap-6">
         {sections.map((section) => (
           <Link key={section.href} href={section.href}>
-            <div className="group relative rounded-2xl shadow-lg border border-[var(--color-accent)] bg-white 
-                            overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl cursor-pointer">
-              <div className="p-6">
-                <h2 className="text-2xl font-semibold text-[var(--color-primary)] mb-2 group-hover:text-[var(--color-secondary-color)] transition-colors">
-                  {section.title}
-                </h2>
-                <p className="text-[var(--text)]">{section.description}</p>
+            <div className="group relative rounded-2xl border border-primary/5 bg-white p-6 shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h2 className="text-lg font-bold text-primary group-hover:text-golden transition-colors duration-150">
+                    {section.title}
+                  </h2>
+                  <p className="text-xs text-text-light/70 font-light mt-1 max-w-md">{section.description}</p>
+                </div>
+                <span className="text-xl text-primary/30 group-hover:text-golden group-hover:translate-x-1 transition-all duration-150 pl-4">→</span>
               </div>
-
-              {/* Decorative gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary-color)] opacity-0 group-hover:opacity-10 transition-opacity rounded-2xl pointer-events-none"></div>
             </div>
           </Link>
         ))}
