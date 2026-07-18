@@ -1,30 +1,18 @@
-"use client";
-import { useRef } from "react";
-import dynamic from 'next/dynamic'; // 1. Import dynamic
-import Hero from "@/components/Hero";
+import React from "react";
+import { getTeamData } from "@/lib/team";
+import HomeClient from "./page.client";
 
-// 2. Dynamically import sections so they don't block the initial load
-const NTHSection = dynamic(() => import("@/components/NTH2025"), { loading: () => <div className="h-96" /> });
-const Activities = dynamic(() => import("@/components/Activities"));
-const Experts = dynamic(() => import("@/components/Experts"));
-const Posts = dynamic(() => import("@/components/Posts"));
-const Donate = dynamic(() => import("@/components/Donate"));
+export const runtime = "edge";
 
-export default function Home() {
-  const nextSectionRef = useRef(null);
-  return (
-    <>
-      <Hero onExplore={() =>
-        nextSectionRef.current?.scrollIntoView({ behavior: "smooth" })
-      } />
+export default async function Home() {
+    // 1. Fetch the 2026 dataset right on the edge
+    const teamData = await getTeamData("2026") || {};
+    
+    // 2. Filter out just the department leads
+    const departmentHeads = Object.values(teamData)
+        .flat()
+        .filter(member => member.role?.toLowerCase() === "head");
 
-      <div ref={nextSectionRef}>
-        <NTHSection />
-        <Activities />
-        <Experts />
-        <Posts />
-        <Donate />
-      </div>
-    </>
-  );
+    // 3. Mount the client wrapper and pass the data down
+    return <HomeClient featuredHeads={departmentHeads} />;
 }
