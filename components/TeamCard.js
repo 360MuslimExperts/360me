@@ -5,15 +5,17 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const TeamCard = ({ member }) => {
-    // 1. Logic for Role Formatting
-    // Handles 'Head' -> "Head of [Category] Department"
-    // Handles 'Member' -> "[Category] Member" (or whatever you prefer)
+    // Helper to capitalize first letter
+    const capitalize = (str) => str ? str.charAt(0).toUpperCase() + str.slice(1) : "";
+
+    // Formatting logic
     let displayRole = member.role;
-    
-    if (member.role === "Head" && member.category) {
-        displayRole = `Head of ${member.category.charAt(0).toUpperCase() + member.category.slice(1)} Department`;
-    } else if (member.role === "Member" && member.category) {
-        displayRole = `${member.category.charAt(0).toUpperCase() + member.category.slice(1)} Member`;
+    const deptName = capitalize(member.category || member.dept || "");
+
+    if (member.role?.toLowerCase() === "head" && deptName) {
+        displayRole = `Head of ${deptName} Department`;
+    } else if (member.role?.toLowerCase() === "member" && deptName) {
+        displayRole = `${deptName} Member`;
     }
 
     return (
@@ -31,7 +33,6 @@ const TeamCard = ({ member }) => {
                 <div className="absolute inset-0 bg-golden/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300" />
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-md">
                     <Image
-                        // 2. Updated path here
                         src={member.image || "/api/assets/logo/logo-512.png"} 
                         alt={member.name}
                         width={128}

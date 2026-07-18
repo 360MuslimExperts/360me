@@ -13,7 +13,9 @@ export default function TeamContent({ teamData, availableYears, year }) {
             <div className="min-h-screen flex items-center justify-center pt-20">
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-primary mb-4">Year not found</h2>
-                    <Link href="/team" className="btn">Go to Latest Team</Link>
+                    <Link href="/team" className="px-6 py-2 bg-golden text-black rounded-lg font-bold">
+                        Go to Latest Team
+                    </Link>
                 </div>
             </div>
         );
@@ -21,9 +23,12 @@ export default function TeamContent({ teamData, availableYears, year }) {
 
     const departments = Object.keys(teamData);
 
+    // Flatten data and ensure every member has a 'dept' property assigned
     const displayedMembers = activeDept === 'all'
-        ? departments.flatMap(dept => teamData[dept].map(member => ({ ...member, dept })))
-        : teamData[activeDept]?.map(member => ({ ...member, dept: activeDept })) || [];
+        ? departments.flatMap(dept => 
+            (teamData[dept] || []).map(member => ({ ...member, dept }))
+          )
+        : (teamData[activeDept] || []).map(member => ({ ...member, dept: activeDept }));
 
     return (
         <main className="min-h-screen pt-24 pb-20 px-4 bg-background">
@@ -39,13 +44,13 @@ export default function TeamContent({ teamData, availableYears, year }) {
                     </p>
 
                     {/* Year Selector */}
-                    <div className="flex justify-center gap-4 mb-8">
+                    <div className="flex flex-wrap justify-center gap-4 mb-8">
                         <span className="text-sm font-semibold text-text-light uppercase tracking-wider self-center">Archives:</span>
                         {availableYears.map((yr) => (
                             <Link
                                 key={yr}
                                 href={`/team/${yr}`}
-                                className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${year === yr
+                                className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${year === String(yr)
                                     ? 'bg-golden text-black shadow-md'
                                     : 'bg-white/50 text-text-light hover:bg-white border border-transparent hover:border-golden'
                                     }`}
@@ -70,7 +75,9 @@ export default function TeamContent({ teamData, availableYears, year }) {
                             <TeamCard key={`${member.name}-${idx}`} member={member} />
                         ))
                     ) : (
-                        <p className="col-span-full text-center text-gray-500 py-10">No members found in this department.</p>
+                        <p className="col-span-full text-center text-gray-500 py-10">
+                            No members found in this department.
+                        </p>
                     )}
                 </div>
 
