@@ -2,7 +2,6 @@
 
 import React from "react";
 
-// Move the text formatting helper inside this client file directly
 function formatDepartmentName(key) {
     const map = {
         'governing': 'Governing Body',
@@ -10,18 +9,22 @@ function formatDepartmentName(key) {
         'medico': 'Medico 360',
         'media': 'Media Team',
         'technical': 'Technical Team',
-        'education': '360 Education'
+        'education': '360 Education',
+        'nursing': 'Nursing Care',
+        'religious': 'Religious Affairs',
+        'events': 'Events & Management'
     };
     return map[key.toLowerCase()] || key.charAt(0).toUpperCase() + key.slice(1);
 }
 
 const DepartmentFilter = ({ departments, activeDept, onSelect }) => {
     return (
-        <div className="flex flex-wrap justify-center gap-3 my-8">
+        /* Reduced vertical margins from my-8 to my-5 */
+        <div className="flex flex-wrap justify-center gap-2 my-5">
             <button
                 onClick={() => onSelect('all')}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeDept === 'all'
-                        ? 'bg-primary text-white shadow-lg scale-105'
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors duration-150 ${activeDept === 'all'
+                        ? 'bg-primary text-white'
                         : 'bg-white text-primary hover:bg-gray-50 border border-gray-200'
                     }`}
             >
@@ -32,8 +35,8 @@ const DepartmentFilter = ({ departments, activeDept, onSelect }) => {
                 <button
                     key={dept}
                     onClick={() => onSelect(dept)}
-                    className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeDept === dept
-                            ? 'bg-primary text-white shadow-lg scale-105'
+                    className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors duration-150 ${activeDept === dept
+                            ? 'bg-primary text-white'
                             : 'bg-white text-primary hover:bg-gray-50 border border-gray-200'
                         }`}
                 >

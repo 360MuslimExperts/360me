@@ -3,8 +3,6 @@
 
 /**
  * FONT FACE DECLARATIONS
- * Self-hosted Jameel Noori Nastaleeq for Urdu text
- * This is the primary font for Urdu content with Noto Nastaliq Urdu as fallback
  */
 @font-face {
   font-family: 'Jameel Noori Nastaleeq';
@@ -14,13 +12,10 @@
   font-display: swap;
 }
 
-/* Light mode defaults */
 :root {
   --background: #fffaf5;
-  /* Slightly warmer background */
   --foreground: #2c2c2c;
   
-  /* Font family variables */
   --font-outfit: 'Outfit', sans-serif;
   --font-urdu: 'Noto Nastaliq Urdu', serif;
   --font-arabic: 'Noto Naskh Arabic', serif;
@@ -33,34 +28,24 @@ body {
   scroll-behavior: smooth;
 }
 
-/**
- * URDU & ARABIC TYPOGRAPHY
- * Urdu uses Nastaleeq script which requires more vertical space
- * Arabic uses Naskh script which is more compact
- */
-
-/* Urdu text - Jameel Noori Nastaleeq with fallbacks */
 .font-urdu-nastaleeq {
   font-family: var(--font-urdu-nastaleeq);
-  line-height: 2.5; /* Extra line-height for Nastaleeq calligraphy */
+  line-height: 2.5;
   letter-spacing: 0;
 }
 
-/* Arabic text - Noto Naskh Arabic */
 .font-arabic {
   font-family: var(--font-arabic);
-  line-height: 2; /* Moderate line-height for Naskh */
+  line-height: 2;
   letter-spacing: 0;
 }
 
-/* Legacy Urdu class for backward compatibility */
 .urdu {
   font-family: var(--font-urdu);
   line-height: 2.2;
   letter-spacing: 0;
 }
 
-/* Tailwind theme tokens */
 @theme inline {
   --color-primary: #4A1D12;
   --color-secondary: #8C5E4D;
@@ -68,7 +53,6 @@ body {
   --color-text: #1F1F1F;
   --color-text-light: #444444;
   --color-golden: #D48D00;
-  /* Darkened gold for better contrast */
   --color-white: #ffffff;
   --color-black: #0F0F0F;
 
@@ -77,24 +61,24 @@ body {
 }
 
 @layer components {
+  /* Tightened layout tracking spacing from py-24/32 down to balanced sections */
   .section-padding {
-    @apply py-24 md:py-32;
+    @apply py-12 md:py-16;
   }
 
   .container-wide {
-    @apply max-w-7xl mx-auto px-6;
+    @apply max-w-7xl mx-auto px-4 sm:px-6;
   }
 
-  /* Reveal animation */
-    /* ⚡ SNAPPY AND INSTANT REVEAL ANIMATION */
+  /* ⚡ Snappy 150ms Reveal Animation window */
   .reveal {
-    animation: reveal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: reveal 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes reveal {
     0% {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(4px);
     }
     100% {
       opacity: 1;
@@ -102,22 +86,21 @@ body {
     }
   }
 
-  /* Faster duration for hover states */
+  /* Reduced lift translation values and clamped durations */
   .hover-card {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(74,29,18,0.1)];
+    @apply transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-8px_rgba(74,29,18,0.08)];
   }
 
-  /* Glassmorphism Utilities */
   .glass {
-    @apply bg-white/40 backdrop-blur-xl border border-white/40 shadow-xl;
+    @apply bg-white/40 backdrop-blur-xl border border-white/40 shadow-md;
   }
 
-  /* ⚡ Snappy buttons with faster animations */
+  /* Tightened up button layout metrics to look sleek */
   .btn {
-    @apply inline-flex items-center justify-center px-10 py-5 rounded-2xl font-black uppercase tracking-widest bg-primary text-white shadow-xl shadow-primary/20 transition-all duration-200 hover:bg-primary/90 active:scale-95;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold uppercase tracking-wider bg-primary text-white shadow-md transition-all duration-150 hover:bg-primary/95 active:scale-[0.98];
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-10 py-5 rounded-2xl font-black uppercase tracking-widest border-2 border-primary text-primary transition-all duration-200 hover:bg-primary hover:text-white active:scale-95;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold uppercase tracking-wider border-2 border-primary text-primary transition-all duration-150 hover:bg-primary hover:text-white active:scale-[0.98];
   }
 }

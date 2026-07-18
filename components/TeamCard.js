@@ -51,47 +51,48 @@ const TeamCard = ({ member }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            whileHover={{ y: -4 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="group relative bg-white rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col items-center text-center overflow-hidden h-full"
+            whileHover={{ y: -3 }} // Kept lift minimal to avoid disrupting grid focus
+            transition={{ duration: 0.15, ease: "easeOut" }} // Snappy timing window
+            className="group relative bg-white rounded-xl p-3.5 shadow-md hover:shadow-xl transition-shadow duration-200 border border-gray-100 flex flex-col items-center text-center overflow-hidden h-full"
         >
-            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-br from-primary/10 to-transparent z-0" />
+            {/* Reduced background accent height from h-24 to h-16 to optimize vertical spacing */}
+            <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-br from-primary/5 to-transparent z-0" />
 
             <div className="flex flex-col items-center w-full flex-grow">
-                {/* Avatar */}
-                <div className="relative w-32 h-32 mb-4 z-10">
-                    <div className="absolute inset-0 bg-golden/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300" />
-                    <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-md">
+                {/* Avatar container squeezed from mb-4 to mb-2.5 */}
+                <div className="relative w-28 h-28 mb-2.5注册 z-10 mt-2">
+                    <div className="absolute inset-0 bg-golden/10 rounded-full blur-md group-hover:blur-lg transition-all duration-200" />
+                    <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-sm">
                         <Image
                             src={member.image || "/api/assets/logo/logo-128.webp"} 
                             alt={member.name}
                             width={256}
                             height={256}
-                            className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${!member.image ? 'p-4 bg-gray-50' : ''}`}
+                            className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
                         />
                     </div>
                 </div>
 
-                {/* Member Info */}
-                <div className="z-10 w-full px-2">
-                    <h3 className="text-xl font-bold text-primary mb-1 group-hover:text-golden transition-colors duration-300 line-clamp-1">
+                {/* Identity Texts tightened up */}
+                <div className="z-10 w-full px-1">
+                    <h3 className="text-lg font-bold text-primary mb-0.5 group-hover:text-golden transition-colors duration-200 line-clamp-1">
                         {member.name}
                     </h3>
-                    <p className="text-xs font-semibold text-secondary mb-2 uppercase tracking-wide">
+                    <p className="text-[11px] font-semibold text-secondary/80 mb-1.5 uppercase tracking-wide">
                         {displayRole}
                     </p>
 
                     {member.regNo && (
-                        <div className="inline-block bg-gray-100 px-3 py-0.5 rounded-full text-[11px] text-gray-500 font-mono mb-2">
+                        <div className="inline-block bg-gray-50 px-2 py-0.5 rounded-full text-[10px] text-gray-400 font-mono mb-1">
                             {member.regNo}
                         </div>
                     )}
                 </div>
             </div>
 
-            {/* Social Icons row - Clean conditional render with zero height impact if empty */}
+            {/* Social Links Row */}
             {socialLinks.length > 0 && (
-                <div className="z-10 w-full pt-3 mt-1 border-t border-gray-50 flex items-center justify-center gap-3.5 text-gray-400 text-lg">
+                <div className="z-10 w-full pt-2.5 mt-1 border-t border-gray-50 flex items-center justify-center gap-3 text-gray-400 text-base">
                     {socialLinks.map((social, idx) => (
                         <a
                             key={idx}
@@ -99,7 +100,7 @@ const TeamCard = ({ member }) => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`${member.name}'s ${social.label}`}
-                            className={`transition-all duration-200 text-gray-500 ${social.color} p-0.5 hover:scale-110 transform`}
+                            className={`transition-colors duration-150 text-gray-400 ${social.color} p-0.5`}
                         >
                             {social.icon}
                         </a>
@@ -107,7 +108,7 @@ const TeamCard = ({ member }) => {
                 </div>
             )}
 
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-golden to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+            <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary via-golden to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
         </motion.div>
     );
 };
