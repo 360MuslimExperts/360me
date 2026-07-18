@@ -9,9 +9,7 @@ const nextConfig = {
   // Add 'md' and 'mdx' to the list of page extensions.
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
-    // Enable Cloudflare Image Resizing
-    loader: 'custom',
-    loaderFile: './image-loader.js',
+    // Reverted to default to fix image loading issues
     remotePatterns: [
       {
         protocol: 'https',
