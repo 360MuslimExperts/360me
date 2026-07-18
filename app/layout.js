@@ -49,9 +49,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${notoNastaliqUrdu.variable}`}>
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="bg-background text-foreground antialiased min-h-screen flex flex-col">
         <Navbar />
-        {children}
+        <main className="flex-grow">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

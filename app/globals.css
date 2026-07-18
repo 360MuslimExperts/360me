@@ -16,10 +16,11 @@
   --background: #fffaf5;
   --foreground: #2c2c2c;
   
+  /* These will be assigned dynamically by Next.js font variables, 
+     but we leave fallbacks here just in case */
   --font-outfit: 'Outfit', sans-serif;
   --font-urdu: 'Noto Nastaliq Urdu', serif;
   --font-arabic: 'Noto Naskh Arabic', serif;
-  --font-urdu-nastaleeq: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif;
 }
 
 html,
@@ -28,25 +29,8 @@ body {
   scroll-behavior: smooth;
 }
 
-.font-urdu-nastaleeq {
-  font-family: var(--font-urdu-nastaleeq);
-  line-height: 2.5;
-  letter-spacing: 0;
-}
-
-.font-arabic {
-  font-family: var(--font-arabic);
-  line-height: 2;
-  letter-spacing: 0;
-}
-
-.urdu {
-  font-family: var(--font-urdu);
-  line-height: 2.2;
-  letter-spacing: 0;
-}
-
-@theme inline {
+/* Tailwind v4 Config Theme Block */
+@theme {
   --color-primary: #4A1D12;
   --color-secondary: #8C5E4D;
   --color-accent: #E6B686;
@@ -58,49 +42,65 @@ body {
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Mapping v4 design system tokens directly to your Next.js CSS variables */
+  --font-sans: var(--font-outfit), sans-serif;
+  --font-urdu-nastaleeq: 'Jameel Noori Nastaleeq', var(--font-urdu), var(--font-arabic), serif;
+  --font-arabic: var(--font-arabic), serif;
+  --font-urdu: var(--font-urdu), serif;
 }
 
-@layer components {
-  /* Tightened layout tracking spacing from py-24/32 down to balanced sections */
-  .section-padding {
-    @apply py-12 md:py-16;
-  }
+/* Custom Base Utilities */
+.rtl {
+  direction: rtl;
+}
+.ltr {
+  direction: ltr;
+}
 
-  .container-wide {
-    @apply max-w-7xl mx-auto px-4 sm:px-6;
-  }
+/* Explicit fallback utilities if called outside of SmartText components */
+.font-urdu-nastaleeq {
+  font-family: var(--font-urdu-nastaleeq);
+  line-height: 2.5;
+  letter-spacing: 0;
+}
 
-  /* ⚡ Snappy 150ms Reveal Animation window */
-  .reveal {
-    animation: reveal 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
+@utility section-padding {
+  @apply py-12 md:py-16;
+}
 
-  @keyframes reveal {
-    0% {
-      opacity: 0;
-      transform: translateY(4px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+@utility container-wide {
+  @apply max-w-7xl mx-auto px-4 sm:px-6;
+}
 
-  /* Reduced lift translation values and clamped durations */
-  .hover-card {
-    @apply transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-8px_rgba(74,29,18,0.08)];
-  }
+@utility hover-card {
+  @apply transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-8px_rgba(74,29,18,0.08)];
+}
 
-  .glass {
-    @apply bg-white/40 backdrop-blur-xl border border-white/40 shadow-md;
-  }
+@utility glass {
+  @apply bg-white/40 backdrop-blur-xl border border-white/40 shadow-md;
+}
 
-  /* Tightened up button layout metrics to look sleek */
-  .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold uppercase tracking-wider bg-primary text-white shadow-md transition-all duration-150 hover:bg-primary/95 active:scale-[0.98];
-  }
+@utility btn {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold uppercase tracking-wider bg-primary text-white shadow-md transition-all duration-150 hover:bg-primary/95 active:scale-[0.98];
+}
 
-  .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold uppercase tracking-wider border-2 border-primary text-primary transition-all duration-150 hover:bg-primary hover:text-white active:scale-[0.98];
+@utility btn-outline {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold uppercase tracking-wider border-2 border-primary text-primary transition-all duration-150 hover:bg-primary hover:text-white active:scale-[0.98];
+}
+
+/* ⚡ Snappy 150ms Reveal Animation window */
+@utility reveal {
+  animation: reveal 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
