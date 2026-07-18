@@ -8,12 +8,19 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
-    // Allows Next.js to serve modern WebP/AVIF to mobile users
+    // ⚡ Prevents Next.js execution overhead on Cloudflare Pages for local/R2 assets
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'cdn.sanity.io',
+        pathname: '/**',
+      },
+      // ⚡ Allows any external HTTPS links (like random profile pics submitted by users)
+      {
+        protocol: 'https',
+        hostname: '**',
         pathname: '/**',
       },
     ],
