@@ -86,24 +86,25 @@ body {
   }
 
   /* Reveal animation */
+    /* ⚡ SNAPPY AND INSTANT REVEAL ANIMATION */
   .reveal {
-    animation: reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: reveal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes reveal {
     0% {
       opacity: 0;
-      transform: translateY(30px) scale(0.98);
+      transform: translateY(10px);
     }
     100% {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
   }
 
-  /* Hover Card Effect */
+  /* Faster duration for hover states */
   .hover-card {
-    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_40px_80px_-20px_rgba(74,29,18,0.15)];
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(74,29,18,0.1)];
   }
 
   /* Glassmorphism Utilities */
@@ -111,11 +112,12 @@ body {
     @apply bg-white/40 backdrop-blur-xl border border-white/40 shadow-xl;
   }
 
+  /* ⚡ Snappy buttons with faster animations */
   .btn {
-    @apply inline-flex items-center justify-center px-10 py-5 rounded-2xl font-black uppercase tracking-widest bg-primary text-white shadow-xl shadow-primary/20 transition-all duration-300 hover:bg-primary/90 hover:scale-105 active:scale-95;
+    @apply inline-flex items-center justify-center px-10 py-5 rounded-2xl font-black uppercase tracking-widest bg-primary text-white shadow-xl shadow-primary/20 transition-all duration-200 hover:bg-primary/90 active:scale-95;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-10 py-5 rounded-2xl font-black uppercase tracking-widest border-2 border-primary text-primary transition-all duration-300 hover:bg-primary hover:text-white hover:scale-105 active:scale-95;
+    @apply inline-flex items-center justify-center px-10 py-5 rounded-2xl font-black uppercase tracking-widest border-2 border-primary text-primary transition-all duration-200 hover:bg-primary hover:text-white active:scale-95;
   }
 }
