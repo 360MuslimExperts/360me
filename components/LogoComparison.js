@@ -29,7 +29,7 @@ export default function LogoComparison() {
             {/* Background Image (Right / "After" / Creative) */}
             <div className="absolute inset-0 flex items-center justify-center bg-white">
                 <Image
-                    src="/logo-creative.png"
+                    src="/api/assets/logo/logo-creative.png"
                     alt="Creative Logo"
                     fill
                     className="object-contain"
@@ -46,7 +46,7 @@ export default function LogoComparison() {
                 {/* Fixed width container to keep image centered relative to full view */}
                 <div className="relative w-full h-full">
                     <Image
-                        src="/logo-512.png"
+                        src="/api/assets/logo/logo-512.png"
                         alt="Standard Logo"
                         fill
                         className="object-contain"
