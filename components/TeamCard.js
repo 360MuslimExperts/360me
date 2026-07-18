@@ -3,6 +3,15 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { 
+    FaGithub, 
+    FaInstagram, 
+    FaFacebook, 
+    FaYoutube, 
+    FaGlobe, 
+    FaXTwitter, 
+    FaLinkedinIn 
+} from "react-icons/fa6";
 
 const TeamCard = ({ member }) => {
     const capitalize = (str) => str ? str.charAt(0).toUpperCase() + str.slice(1) : "";
@@ -16,44 +25,94 @@ const TeamCard = ({ member }) => {
         displayRole = `${deptName} Member`;
     }
 
+    // ⚡ Smart URL builder: converts raw handles into full clickable links
+    const formatSocialUrl = (input, baseUrl) => {
+        if (!input) return null;
+        const cleanInput = input.trim();
+        // If it's already a full link, just return it
+        if (cleanInput.startsWith("http://") || cleanInput.startsWith("https://")) {
+            return cleanInput;
+        }
+        // If it's just a handle, strip any leading '@' and attach to the base domain
+        const handle = cleanInput.startsWith("@") ? cleanInput.slice(1) : cleanInput;
+        return `${baseUrl}/${handle}`;
+    };
+
+    // Configuration array for all supported networks
+    const socialLinks = [
+        { url: formatSocialUrl(member.github, "https://github.com"), icon: <FaGithub />, label: "GitHub", color: "hover:text-black" },
+        { url: formatSocialUrl(member.instagram, "https://instagram.com"), icon: <FaInstagram />, label: "Instagram", color: "hover:text-pink-600" },
+        { url: formatSocialUrl(member.facebook, "https://facebook.com"), icon: <FaFacebook />, label: "Facebook", color: "hover:text-blue-600" },
+        { url: formatSocialUrl(member.twitter || member.x, "https://x.com"), icon: <FaXTwitter />, label: "X / Twitter", color: "hover:text-black" },
+        { url: formatSocialUrl(member.linkedin, "https://linkedin.com/in"), icon: <FaLinkedinIn />, label: "LinkedIn", color: "hover:text-blue-700" },
+        { url: formatSocialUrl(member.youtube, "https://youtube.com"), icon: <FaYoutube />, label: "YouTube", color: "hover:text-red-600" },
+        { url: member.website ? (member.website.startsWith("http") ? member.website : `https://${member.website}`) : null, icon: <FaGlobe />, label: "Website", color: "hover:text-golden" },
+    ].filter(link => link.url); // ⚡ Hidden for anyone who doesn't have links!
+
     return (
         <motion.div
-            // ⚡ The Fix: Use layout prop so cards slide into position smoothly instead of fading from the sky
             layout
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="group relative bg-white rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col items-center text-center overflow-hidden"
+            className="group relative bg-white rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col items-center text-center overflow-hidden h-full justify-between"
         >
             <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-br from-primary/10 to-transparent z-0" />
 
-            <div className="relative w-32 h-32 mb-4 z-10">
-                <div className="absolute inset-0 bg-golden/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300" />
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-md">
-                    <Image
-                        src={member.image || "/api/assets/logo/logo-128.webp"} 
-                        alt={member.name}
-                        width={256}
-                        height={256}
-                        className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${!member.image ? 'p-4 bg-gray-50' : ''}`}
-                    />
+            <div className="flex flex-col items-center w-full">
+                {/* Avatar */}
+                <div className="relative w-32 h-32 mb-4 z-10">
+                    <div className="absolute inset-0 bg-golden/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300" />
+                    <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-md">
+                        <Image
+                            src={member.image || "/api/assets/logo/logo-128.webp"} 
+                            alt={member.name}
+                            width={256}
+                            height={256}
+                            className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${!member.image ? 'p-4 bg-gray-50' : ''}`}
+                        />
+                    </div>
+                </div>
+
+                {/* Member Info */}
+                <div className="z-10 w-full px-2">
+                    <h3 className="text-xl font-bold text-primary mb-1 group-hover:text-golden transition-colors duration-300 line-clamp-1">
+                        {member.name}
+                    </h3>
+                    <p className="text-xs font-semibold text-secondary mb-2 uppercase tracking-wide min-h-[16px]">
+                        {displayRole}
+                    </p>
+
+                    {member.regNo && (
+                        <div className="inline-block bg-gray-100 px-3 py-0.5 rounded-full text-[11px] text-gray-500 font-mono mb-3">
+                            {member.regNo}
+                        </div>
+                    )}
                 </div>
             </div>
 
-            <div className="z-10 w-full">
-                <h3 className="text-xl font-bold text-primary mb-1 group-hover:text-golden transition-colors duration-300">
-                    {member.name}
-                </h3>
-                <p className="text-sm font-medium text-secondary mb-2 uppercase tracking-wide">
-                    {displayRole}
-                </p>
-
-                {member.regNo && (
-                    <div className="inline-block bg-gray-100 px-3 py-1 rounded-full text-xs text-gray-500 font-mono">
-                        {member.regNo}
+            {/* Social Icons row - Only displays if links array has entries */}
+            <div className="z-10 w-full mt-auto pt-2">
+                {socialLinks.length > 0 ? (
+                    <div className="flex items-center justify-center gap-3.5 text-gray-400 text-lg">
+                        {socialLinks.map((social, idx) => (
+                            <a
+                                key={idx}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`${member.name}'s ${social.label}`}
+                                className={`transition-all duration-200 text-gray-500 ${social.color} p-1 hover:scale-110 transform`}
+                            >
+                                {social.icon}
+                            </a>
+                        ))}
                     </div>
+                ) : (
+                    // Invisible spacer keeps cards visually aligned in the grid row even without links
+                    <div className="h-[28px]" />
                 )}
             </div>
 
