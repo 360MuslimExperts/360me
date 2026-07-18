@@ -1,23 +1,21 @@
 import { client, urlFor } from "@/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRightLong, FaRegCalendar, FaChevronRight } from "react-icons/fa6";
+import { SmartText } from "@/components/SmartText";
+import { FaArrowRightLong, FaChevronRight } from "react-icons/fa6";
 
 export const runtime = 'edge';
 export const revalidate = 60;
 
 export default async function BlogPage() {
     const posts = await client.fetch(`*[_type == "post"] | order(publishedAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    publishedAt,
-    mainImage,
-    "excerpt": body[0...1],
-    "author": author->name
-  }`);
-
-    const isUrdu = (text) => /[\u0600-\u06FF]/.test(text);
+        _id,
+        title,
+        "slug": slug.current,
+        publishedAt,
+        mainImage,
+        "author": author->name
+    }`);
 
     return (
         <div className="min-h-screen bg-background pt-36 pb-24 selection:bg-golden/30">
@@ -35,7 +33,6 @@ export default async function BlogPage() {
                         Deep dives into the intersection of technology, tradition, and the future of the Muslim Ummah.
                     </p>
 
-                    {/* Breadcrumb-ish indicator */}
                     <div className="mt-12 flex items-center gap-3 text-xs font-bold text-text-light/40 uppercase tracking-widest">
                         <Link href="/" className="hover:text-primary transition-colors">Home</Link>
                         <FaChevronRight className="scale-75" />
@@ -67,7 +64,6 @@ export default async function BlogPage() {
                                     </div>
                                 )}
 
-                                {/* Floating Date Tag */}
                                 <div className="absolute top-8 right-8">
                                     <div className="w-16 h-16 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl flex flex-col items-center justify-center border border-white/20">
                                         <span className="text-primary font-black text-xl leading-none">
@@ -79,7 +75,6 @@ export default async function BlogPage() {
                                     </div>
                                 </div>
 
-                                {/* Categories/Types */}
                                 <div className="absolute bottom-8 left-8">
                                     <div className="px-5 py-2 bg-primary/95 backdrop-blur-md text-white font-bold text-[10px] uppercase tracking-[0.2em] rounded-full shadow-lg">
                                         Community
@@ -96,11 +91,14 @@ export default async function BlogPage() {
                                     </span>
                                 </div>
 
-                                <h2 className={`font-black text-primary group-hover:text-golden transition-colors leading-[1.1] mb-6 ${idx === 0 ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-3xl'} ${isUrdu(post.title) ? "urdu" : ""}`}>
-                                    <Link href={`/blog/${post.slug}`}>
+                                <Link href={`/blog/${post.slug}`} className="block mb-6">
+                                    <SmartText 
+                                        as="h2" 
+                                        className={`font-black text-primary group-hover:text-golden transition-colors leading-[1.2] ${idx === 0 ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-2xl'}`}
+                                    >
                                         {post.title}
-                                    </Link>
-                                </h2>
+                                    </SmartText>
+                                </Link>
 
                                 <p className="text-text-light/70 text-lg leading-relaxed mb-10 line-clamp-3 font-light">
                                     Transforming the narrative of Islamic innovation through expertise and professional excellence.

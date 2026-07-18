@@ -6,8 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { client, urlFor } from "@/lib/sanity";
-
-import { isUrdu } from "@/lib/utils";
+import { SmartText } from "@/components/SmartText";
 
 const Posts = () => {
     const [posts, setPosts] = React.useState([]);
@@ -41,7 +40,7 @@ const Posts = () => {
                         <motion.span
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
-                            className="text-secondary-color font-bold tracking-widest uppercase text-sm mb-3 block"
+                            className="text-golden font-bold tracking-widest uppercase text-sm mb-3 block"
                         >
                             Stay Informed
                         </motion.span>
@@ -53,10 +52,7 @@ const Posts = () => {
                             Recent <span className="text-golden">Articles</span> & Insights
                         </motion.h2>
                     </div>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                    >
+                    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
                         <Link href="/blog" className="btn-outline group">
                             View All News
                             <FaArrowRightLong className="ml-2 group-hover:translate-x-2 transition-transform" />
@@ -96,9 +92,14 @@ const Posts = () => {
                                 <span className="text-text-light text-xs font-semibold mb-3 uppercase tracking-wider">
                                     {new Date(post.publishedAt).toLocaleDateString()}
                                 </span>
-                                <h3 className={`text-2xl font-bold text-primary mb-4 line-clamp-2 group-hover:text-secondary-color transition-colors ${isUrdu(post.title) ? "urdu" : ""}`}>
+                                
+                                <SmartText 
+                                    as="h3" 
+                                    className="text-2xl font-bold text-primary mb-4 line-clamp-2 group-hover:text-golden transition-colors"
+                                >
                                     {post.title}
-                                </h3>
+                                </SmartText>
+
                                 <div className="mt-auto pt-6 border-t border-gray-50 flex items-center justify-between">
                                     <Link href={`/blog/${post.slug}`} className="text-primary font-bold text-sm tracking-wide flex items-center group/link">
                                         Read More

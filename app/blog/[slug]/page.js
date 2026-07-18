@@ -36,9 +36,12 @@ const components = {
          * SmartText handles font selection and RTL/LTR direction
          */
         h1: ({ children }) => (
-            <SmartText as="h1" className="text-4xl md:text-6xl font-black mt-16 mb-8 tracking-tight text-center">
-                {children}
-            </SmartText>
+            <SmartText 
+    as="h1" 
+    className="text-4xl md:text-6xl font-black text-primary leading-[1.3] mb-9 tracking-tight text-center"
+>
+    {post.title}
+</SmartText>
         ),
         /**
          * Heading 2: Section heading with decorative underline
