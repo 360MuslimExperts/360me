@@ -27,6 +27,14 @@ const nextConfig = {
   },
   // Reduces response payload size
   poweredByHeader: false,
+  
+  // ⚡ Fixes the blank page router cache freeze on client-side navigation
+  experimental: {
+    staleTimes: {
+      dynamic: 0,
+      static: 0,
+    },
+  },
 };
 
 const withMDX = import('@next/mdx').then((mod) => mod.default({
