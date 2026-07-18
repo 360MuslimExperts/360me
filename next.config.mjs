@@ -6,30 +6,27 @@ setupDevPlatform().catch(console.error);
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Add 'md' and 'mdx' to the list of page extensions.
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
-    // Reverted to default to fix image loading issues
+    // Allows Next.js to serve modern WebP/AVIF to mobile users
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'ibtisam.is-a.dev',
-      },
-      {
-        protocol: 'https',
         hostname: 'cdn.sanity.io',
+        pathname: '/**',
       },
     ],
   },
+  // Reduces response payload size
+  poweredByHeader: false,
 };
 
-// Next.js plugins, like withMDX, must be imported dynamically in ES module files.
 const withMDX = import('@next/mdx').then((mod) => mod.default({
   extension: /\.mdx?$/,
   options: {},
 }));
 
-// We now wrap the nextConfig with the MDX plugin to enable MDX support.
 export default async () => {
   const mdxConfig = await withMDX;
   return mdxConfig(nextConfig);
