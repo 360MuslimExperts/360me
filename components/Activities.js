@@ -10,19 +10,19 @@ const activities = [
     id: "dora",
     title: "Dora e Quran",
     speaker: "Sir Jareer Hussain",
-    img: "/api/assets/activities/dora-e-quran.png",
+    img: "/api/assets/activities/dora-e-quran.avif",
   },
   {
     id: "graphics",
     title: "Graphics Course",
     speaker: "Dr Zain Abbas",
-    img: "/api/assets/activities/graphics-zain.png",
+    img: "/api/assets/activities/graphics-zain.avif",
   },
   {
     id: "amr",
     title: "Amr bil Maroof",
     speaker: "Al Noor Teachers",
-    img: "/api/assets/activities/amr-bil-maroof.png",
+    img: "/api/assets/activities/amr-bil-maroof.avif",
   },
 ];
 
