@@ -23,7 +23,7 @@ export default function TeamContent({ teamData, availableYears, year }) {
 
     const departments = Object.keys(teamData);
 
-    // Flatten data and ensure every member has a 'dept' property assigned
+    // Flatten data while preserving the precise structural assignment properties
     const displayedMembers = activeDept === 'all'
         ? departments.flatMap(dept => 
             (teamData[dept] || []).map(member => ({ ...member, dept }))
@@ -34,7 +34,7 @@ export default function TeamContent({ teamData, availableYears, year }) {
         <main className="min-h-screen pt-24 pb-20 px-4 bg-background">
             <div className="max-w-7xl mx-auto">
 
-                {/* Header */}
+                {/* Header Section */}
                 <div className="text-center mb-12">
                     <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                         Meet Our Team
@@ -43,7 +43,7 @@ export default function TeamContent({ teamData, availableYears, year }) {
                         The dedicated individuals working behind the scenes to make 360 Muslim Experts a reality.
                     </p>
 
-                    {/* Year Selector */}
+                    {/* Temporal Archives */}
                     <div className="flex flex-wrap justify-center gap-4 mb-8">
                         <span className="text-sm font-semibold text-text-light uppercase tracking-wider self-center">Archives:</span>
                         {availableYears.map((yr) => (
@@ -61,25 +61,25 @@ export default function TeamContent({ teamData, availableYears, year }) {
                     </div>
                 </div>
 
-                {/* Filter */}
+                {/* Macro Pillar Filter Menu */}
                 <DepartmentFilter
                     departments={departments}
                     activeDept={activeDept}
                     onSelect={setActiveDept}
                 />
 
-                {/* Grid - Stable Key Implementation */}
+                {/* Grid Output */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
                     {displayedMembers.length > 0 ? (
                         displayedMembers.map((member) => (
                             <TeamCard 
-                                key={member.id || member.regNo || member.name} 
+                                key={member.id !== undefined ? `id-${member.id}-${member.category}` : `name-${member.name}-${member.category}`} 
                                 member={member} 
                             />
                         ))
                     ) : (
                         <p className="col-span-full text-center text-gray-500 py-10">
-                            No members found in this department.
+                            No team members registered under this section.
                         </p>
                     )}
                 </div>

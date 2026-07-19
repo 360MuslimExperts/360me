@@ -14,15 +14,26 @@ import {
 } from "react-icons/fa6";
 
 const TeamCard = ({ member }) => {
-    const capitalize = (str) => str ? str.charAt(0).toUpperCase() + str.slice(1) : "";
+    let displayRole = member.role || "";
+    const deptName = member.category || member.dept || "";
+    const lowerRole = displayRole.toLowerCase();
 
-    let displayRole = member.role;
-    const deptName = capitalize(member.category || member.dept || "");
-
-    if (member.role?.toLowerCase() === "head" && deptName) {
-        displayRole = `Head of ${deptName} Department`;
-    } else if (member.role?.toLowerCase() === "member" && deptName) {
-        displayRole = `${deptName} Member`;
+    // Smart formatting logic for clean designation badges
+    if ((lowerRole === "head" || lowerRole === "deputy head") && deptName) {
+        const titlePrefix = lowerRole === "head" ? "Head" : "Deputy Head";
+        
+        // Prevent doubling words like "Department Department" or "Forum Department"
+        if (deptName.toLowerCase().includes("forum") || deptName.toLowerCase().includes("department") || deptName.includes("&")) {
+            displayRole = `${titlePrefix} of ${deptName}`;
+        } else {
+            displayRole = `${titlePrefix} of ${deptName} Department`;
+        }
+    } else if (lowerRole === "member" && deptName) {
+        if (deptName.toLowerCase().includes("forum") || deptName.toLowerCase().includes("department") || deptName.includes("&")) {
+            displayRole = `${deptName} Member`;
+        } else {
+            displayRole = `${deptName} Team Member`;
+        }
     }
 
     const formatSocialUrl = (input, baseUrl) => {
@@ -51,16 +62,14 @@ const TeamCard = ({ member }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            whileHover={{ y: -3 }} // Kept lift minimal to avoid disrupting grid focus
-            transition={{ duration: 0.15, ease: "easeOut" }} // Snappy timing window
+            whileHover={{ y: -3 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
             className="group relative bg-white rounded-xl p-3.5 shadow-md hover:shadow-xl transition-shadow duration-200 border border-gray-100 flex flex-col items-center text-center overflow-hidden h-full"
         >
-            {/* Reduced background accent height from h-24 to h-16 to optimize vertical spacing */}
             <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-br from-primary/5 to-transparent z-0" />
 
             <div className="flex flex-col items-center w-full flex-grow">
-                {/* Avatar container squeezed from mb-4 to mb-2.5 */}
-                <div className="relative w-28 h-28 mb-2.5注册 z-10 mt-2">
+                <div className="relative w-28 h-28 mb-2.5 z-10 mt-2">
                     <div className="absolute inset-0 bg-golden/10 rounded-full blur-md group-hover:blur-lg transition-all duration-200" />
                     <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-sm">
                         <Image
@@ -73,7 +82,6 @@ const TeamCard = ({ member }) => {
                     </div>
                 </div>
 
-                {/* Identity Texts tightened up */}
                 <div className="z-10 w-full px-1">
                     <h3 className="text-lg font-bold text-primary mb-0.5 group-hover:text-golden transition-colors duration-200 line-clamp-1">
                         {member.name}
@@ -90,7 +98,6 @@ const TeamCard = ({ member }) => {
                 </div>
             </div>
 
-            {/* Social Links Row */}
             {socialLinks.length > 0 && (
                 <div className="z-10 w-full pt-2.5 mt-1 border-t border-gray-50 flex items-center justify-center gap-3 text-gray-400 text-base">
                     {socialLinks.map((social, idx) => (
