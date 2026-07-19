@@ -8,7 +8,6 @@ export async function GET(request, { params }) {
     return new Response("R2 Binding not found. Check wrangler.jsonc or deployment settings.", { status: 500 });
   }
 
-  // Extract the file path (e.g., "logo/logo-512.png")
   const pathArray = await params.path;
   const filePath = pathArray.join("/");
 
