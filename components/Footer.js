@@ -25,8 +25,7 @@ export default function Footer() {
               </h2>
             </div>
             <p className="text-white/70 text-sm leading-relaxed max-w-sm">
-              Empowering communities through education, innovation, and humanitarian aid.
-              We connect professionals and scholars to build a brighter, more inclusive future together.
+              Building a global network of Muslim experts committed to positive change through Islam, education and research.
             </p>
             <div className="flex gap-4">
               {[
