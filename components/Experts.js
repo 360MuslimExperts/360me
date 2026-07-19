@@ -18,42 +18,28 @@ const Experts = ({ featuredHeads = [] }) => {
         growth: "Strategic Growth & PR"
     };
 
-    // Sort weight engine ensuring strict hierarchical order: President -> Vice President -> Head -> Others
+    // Sort weight engine focused exclusively on presidential tiers
     const getRoleWeight = (roleStr) => {
         const role = (roleStr || "").toLowerCase();
-        if (role.includes("president") && !role.includes("vice")) return 1;
-        if (role.includes("vice president")) return 2;
-        if (role.includes("deputy president")) return 2;
-        if (role.includes("head") && !role.includes("deputy")) return 3;
-        if (role.includes("deputy head")) return 4;
-        return 5;
+        if (role.includes("vice president") || role.includes("deputy president")) return 2;
+        if (role.includes("president")) return 1; // Top rank for central/national presidents
+        return 3;
     };
 
-    // Process, normalize roles, and sort data arrays safely inline
-    const sortedLeads = [...featuredHeads]
+    // Filter down to ONLY presidential roles, normalize titles, and sort hierarchically
+    const presidentialLeads = [...featuredHeads]
+        .filter(lead => (lead.role || "").toLowerCase().includes("president"))
         .map(lead => {
             const cleanCategory = lead.category?.toLowerCase() || "";
             const deptName = departmentNames[cleanCategory] || lead.category || "";
-            let displayRole = lead.role || "";
-            const lowerRole = displayRole.toLowerCase();
-
-            // Smart formatting logic to clean role badges without word duplication
-            if ((lowerRole === "head" || lowerRole === "deputy head") && deptName) {
-                const titlePrefix = lowerRole === "head" ? "Head" : "Deputy Head";
-                if (deptName.toLowerCase().includes("forum") || deptName.toLowerCase().includes("department") || deptName.includes("&")) {
-                    displayRole = `${titlePrefix} of ${deptName}`;
-                } else {
-                    displayRole = `${titlePrefix} of ${deptName} Department`;
-                }
-            }
-
+            
             return {
                 ...lead,
                 deptName,
-                displayRole
+                displayRole: lead.role || ""
             };
         })
-        .sort((a, b) => getRoleWeight(a.role) - getRoleWeight(b.role));
+        .sort((a, b) => getRoleWeight(a.displayRole) - getRoleWeight(b.displayRole));
 
     return (
         <section className="py-14 bg-white relative overflow-hidden">
@@ -71,9 +57,9 @@ const Experts = ({ featuredHeads = [] }) => {
                     </h2>
                 </div>
 
-                {/* Grid cleanly auto-scales depending on how many leads are in data arrays */}
+                {/* Grid cleanly auto-scales for executive personnel profiles */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
-                    {sortedLeads.map((lead, idx) => {
+                    {presidentialLeads.map((lead, idx) => {
                         return (
                             <div key={lead.id || idx} className="group relative">
                                 <div className="relative h-full bg-white rounded-2xl p-5 pt-12 border border-gray-100 shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between">
@@ -83,10 +69,10 @@ const Experts = ({ featuredHeads = [] }) => {
                                         <div className="absolute inset-0 bg-golden/10 rounded-full blur-md group-hover:blur-lg transition-all duration-200" />
                                         <div className="relative w-full h-full rounded-full border-2 border-white shadow-md overflow-hidden bg-gray-50">
                                             <Image
-                                                src={lead.image || "/api/assets/logo/logo-256.webp"}
+                                                src={lead.image || "/api/assets/logo/logo-128.avif"}
                                                 alt={lead.name}
                                                 fill
-                                                unoptimized
+                                                unoptimized // Bypasses edge server transformation logic to preserve manual compressions
                                                 className="object-cover transition-transform duration-200 group-hover:scale-105"
                                                 sizes="96px"
                                             />
@@ -106,7 +92,7 @@ const Experts = ({ featuredHeads = [] }) => {
                                         <div>
                                             <div className="h-[1px] w-8 bg-gray-100 mb-4 mx-auto group-hover:w-1/3 group-hover:bg-golden transition-all duration-200" />
                                             <p className="text-xs text-text-light/80 leading-relaxed font-light">
-                                                Directing organizational strategy, architecture, and core execution tracks within the <span className="font-medium text-primary">{lead.deptName}</span> division.
+                                                Directing organizational strategy, governance structures, and macro operations within the <span className="font-medium text-primary">{lead.deptName || "General Division"}</span>.
                                             </p>
                                         </div>
                                     </div>
