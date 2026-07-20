@@ -40,7 +40,7 @@ const components = {
     as="h1" 
     className="text-4xl md:text-6xl font-black text-primary leading-[1.3] mb-9 tracking-tight text-center"
 >
-    {post.title}
+    {children}
 </SmartText>
         ),
         /**
